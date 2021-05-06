@@ -24,4 +24,5 @@ server.all('*', (req, res) => {
 })
 
 server.use(errorHandler);
+
 server.listen(process.env.PORT || 3000, () => console.log("Listening on http://localhost:3000"));
