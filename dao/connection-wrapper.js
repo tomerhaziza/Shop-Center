@@ -7,10 +7,16 @@ const mysql = require("mysql2");
 //     password: "1234",
 //     database: "shopping_online"
 // });
+// const connection = mysql.createConnection({
+//     host: "localhost",
+//     user: "root",
+//     password: "tomerhaziza9",
+//     database: "shopping_online"
+// });
 const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "tomerhaziza9",
+    host: "eu-cdbr-west-01.cleardb.com",
+    user: "bbdbab3025ce85",
+    password: "a58bb12e",
     database: "shopping_online"
 });
 
