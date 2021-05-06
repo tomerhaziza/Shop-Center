@@ -1,24 +1,24 @@
 const mysql = require("mysql2");
 
 // Connection to DB
-// const connection = mysql.createConnection({
-//     host: "34.65.226.168",
-//     user: "root",
-//     password: "1234",
-//     database: "shopping_online"
-// });
+const connection = mysql.createConnection({
+    host: "34.65.226.168",
+    user: "root",
+    password: "1234",
+    database: "shopping_online"
+});
 // const connection = mysql.createConnection({
 //     host: "localhost",
 //     user: "root",
 //     password: "tomerhaziza9",
 //     database: "shopping_online"
 // });
-const connection = mysql.createConnection({
-    host: "eu-cdbr-west-01.cleardb.com",
-    user: "bbdbab3025ce85",
-    password: "a58bb12e",
-    database: "shopping_online"
-});
+// const connection = mysql.createConnection({
+//     host: "eu-cdbr-west-01.cleardb.com",
+//     user: "bbdbab3025ce85",
+//     password: "a58bb12e",
+//     database: "heroku_897fcd62927a8f3"
+// });
 
 // Connect to the database: 
 connection.connect(err => {
