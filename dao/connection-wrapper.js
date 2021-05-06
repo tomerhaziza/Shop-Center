@@ -13,12 +13,6 @@ const connection = mysql.createConnection({
 //     password: "tomerhaziza9",
 //     database: "shopping_online"
 // });
-// const connection = mysql.createConnection({
-//     host: "eu-cdbr-west-01.cleardb.com",
-//     user: "bbdbab3025ce85",
-//     password: "a58bb12e",
-//     database: "heroku_897fcd62927a8f3"
-// });
 
 // Connect to the database: 
 connection.connect(err => {
