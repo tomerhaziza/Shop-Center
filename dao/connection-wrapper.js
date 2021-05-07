@@ -1,18 +1,18 @@
 const mysql = require("mysql2");
 
 // Connection to DB
-const connection = mysql.createConnection({
-    host: "34.65.226.168",
-    user: "root",
-    password: "1234",
-    database: "shopping_online"
-});
 // const connection = mysql.createConnection({
-//     host: "localhost",
+//     host: "34.65.226.168",
 //     user: "root",
-//     password: "tomerhaziza9",
+//     password: "1234",
 //     database: "shopping_online"
 // });
+const connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "tomerhaziza9",
+    database: "shopping_online"
+});
 
 // Connect to the database: 
 connection.connect(err => {
