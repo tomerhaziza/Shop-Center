@@ -47,6 +47,7 @@ router.get("/me", async (req, res, next) => {
             throw new ServerError(ErrorType.NO_AUTHORIZATION_TOKEN);
         }
         console.log(req.headers.authorization);
+        console.log(process.env.PORT);
 
         console.log(req.headers.authorization);
         let userId = userDataService.getUserId(req.headers.authorization);
