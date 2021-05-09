@@ -17,6 +17,18 @@ router.post("/login", async (req, res, next) => {
     }
 });
 
+router.post("/google-login", async (req, res, next) => {
+    let token = req.body.token;
+    let user = await userDataService.verify(token);
+    try {
+        let successfullLoginData = await usersLogic.googleLogin(user);
+        res.json(successfullLoginData);
+    }
+    catch (error) {
+        return next(error);
+    }
+});
+
 // New user register
 router.post("/register", async (req, res, next) => {
     let user = req.body;

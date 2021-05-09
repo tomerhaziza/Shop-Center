@@ -88,10 +88,27 @@ async function getUserDetails(userId) {
     }
 }
 
+async function getUserDetailsByEmail(email) {
+    const sql = `SELECT id, email, first_name AS firstName, last_name AS lastName, city, street, role
+                 FROM users WHERE email = ?`;
+    const parameters = [email];
+
+    let userDetails;
+    try {
+        userDetails = await connection.executeWithParameters(sql, parameters);
+        return userDetails[0];
+    }
+    catch (e) {
+        console.error(e);
+        throw new ServerError(ErrorType.GENERAL_ERROR);
+    }
+}
+
 module.exports = {
     addUser,
     login,
     isUserExistById,
     isUserExistByEmail,
-    getUserDetails
+    getUserDetails,
+    getUserDetailsByEmail
 };

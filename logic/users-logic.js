@@ -30,12 +30,51 @@ async function login(user) {
     return successfullLoginResponse;
 }
 
+// Google login
+async function googleLogin(user) {
+    let isUserExist = await usersDao.isUserExistByEmail(user.email);
+    if (isUserExist){
+        return await this.loginRegisteredGoogleUser(user.email);
+    }
+
+    else{ // If user isn't registered, create a new account with his oauth data
+        let newUser = {
+            id: user.sub,
+            email: user.email,
+            password: 'google-password',
+            firstName: user.given_name,
+            lastName: user.family_name,
+            city: null,
+            street: null
+        }
+        try{
+            await this.addUser(newUser);
+            return await this.loginRegisteredGoogleUser(user.email);
+        }catch(e){
+            console.log(e);
+        }
+    }
+}
+
+async function loginRegisteredGoogleUser(email){
+    let userDetails = await usersDao.getUserDetailsByEmail(email)
+    
+    const payload = {
+        sub: config.saltLeft + userDetails.id + config.saltRight,
+        userId: userDetails.id,
+        role: userDetails.role
+    }
+
+    const token = jwt.sign(payload, config.secret);
+    const successfullLoginResponse = { token: token, userDetails: userDetails };
+    return successfullLoginResponse;
+}
+
 // New user register
 async function addUser(user) {
     // Validations
     if ( user.id == null || user.email.trim() == '' || user.password.trim() == '' ||
-         user.firstName.trim() == '' || user.lastName.trim() == '' ||
-         user.city.trim() == '' || user.street.trim() == '' ) {
+         user.firstName.trim() == '' || user.lastName.trim() == '' ) {
         throw new ServerError(ErrorType.MISSING_PARAMETERS);
     }
     // Hash user password
@@ -71,6 +110,8 @@ async function isUserAlreadyExist(userDetails) {
 module.exports = {
     addUser,
     login,
+    googleLogin,
+    loginRegisteredGoogleUser,
     getUserDetails,
     isUserAlreadyExist
 };

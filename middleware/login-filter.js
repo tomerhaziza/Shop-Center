@@ -7,6 +7,7 @@ function authenticateJwtRequestToken() {
     return [expressJwt({ secret, algorithms: ['HS256'] }).unless({
       path: [
         '/api/users/login', // Login
+        '/api/users/google-login', // Login oauth
         '/api/users/register', // Register
         '/api/users/user-exists', // Register details validate
         '/api/users/me', // User identification
@@ -14,8 +15,7 @@ function authenticateJwtRequestToken() {
         '/api/orders/count'
       ]
     }), function(err, req, res, next){
-      // throw new ServerError(ErrorType.NO_AUTHORIZATION_TOKEN);
-      console.log('failed filter');
+      throw new ServerError(ErrorType.NO_AUTHORIZATION_TOKEN);
     }
     ]}
 
