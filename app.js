@@ -9,7 +9,8 @@ const loginFilter = require('./middleware/login-filter');
 
 server.use('/uploads', express.static(__dirname  + '/uploads')); // Make uploads folder public
 server.use(express.static('public')); // Make client public
-server.use(cors({ origin: "34.65.52.225:80" })); // For dev only
+// server.use(cors({ origin: "http://localhost:4200" })); // For dev only
+server.use(cors());
 server.use(express.json());
 
 // JWT authenticator
