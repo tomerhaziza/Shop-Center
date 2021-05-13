@@ -1,50 +1,45 @@
 const mysql = require("mysql2");
 
 // Connection to server DB
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
+    connectionLimit: 10,
     host: "34.65.226.168",
     user: "root",
     password: "1234",
     database: "shopping_online"
 });
-// // Connection to local DB
-// const connection = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "tomerhaziza9",
-//     database: "shopping_online"
-// });
 
-// Connect to the database: 
-connection.connect(err => {
+// Ping database to check for common exception errors.
+pool.getConnection((err, connection) => {
     if (err) {
-        console.log("Failed to create connection + " + err);
-        return;
+        return console.log("Failed to create connection + " + err);
     }
-    console.log("We're connected to MySQL");
-});
+    if (connection) {
+        connection.release();
+        return console.log("We're connected to MySQL");
+    }
+})
 
-
-// One function for executing select / insert / update / delete: 
 function execute(sql) {
     return new Promise((resolve, reject) => {
-        connection.query(sql, (err, result) => {
+        pool.query(sql, function (err, results, fields) {
             if (err) {
+                console.log("Failed interacting with DB, calling reject");
                 console.log("Error " + err);
                 reject(err);
                 return;
             }
-            resolve(result);
+            resolve(results);
         });
     });
 }
 
 function executeWithParameters(sql, parameters) {
     return new Promise((resolve, reject) => {
-        connection.query(sql, parameters, (err, result) => {
+        pool.query(sql, parameters, (err, result, fields) => {
             if (err) {
-                //console.log("Error " + err);
                 console.log("Failed interacting with DB, calling reject");
+                console.log("Error " + err);
                 reject(err);
                 return;
             }
