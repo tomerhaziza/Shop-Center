@@ -93,7 +93,6 @@ class LoginGuard {
             if (!this.stateService.userAuth.isLoggedIn) {
                 yield this.usersService.getUserInfo()
                     .then((userInfoResponse) => {
-                    console.log(userInfoResponse);
                     this.stateService.userDetails = userInfoResponse;
                     this.stateService.userAuth.isLoggedIn = true;
                     if (userInfoResponse.role == 'ADMIN') {
