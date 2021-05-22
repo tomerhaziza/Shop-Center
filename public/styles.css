@@ -14,15 +14,13 @@
 }
 html, body { 
     height: 100%;
-    /* background: url('https://www.background-tiles.com/overview/white/textures/large/5011.png'); */
     background: url('/uploads/app-images/background-tile.png');
 }
+body { font-family: Roboto, "Helvetica Neue", sans-serif; }
 .unselectable {
     -webkit-user-select: none;
     user-select: none;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 button{
     font-family: 'Open Sans', 'sans-serif';
 }
