@@ -25,9 +25,9 @@ server.get('/chef', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 // For PWA support
-server.all('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/index.html'));
-})
+// server.all('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '/public/index.html'));
+// })
 
 
 server.use(errorHandler);
