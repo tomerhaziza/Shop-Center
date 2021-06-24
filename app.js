@@ -24,6 +24,12 @@ server.all('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'));
 })
 
+server.use(express.static(path.join(__dirname, 'build')));
+
+server.get('/chef', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 server.use(errorHandler);
 
 server.listen(process.env.PORT || 3000, () => console.log("Listening on http://localhost:3000"));
