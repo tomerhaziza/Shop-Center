@@ -9,14 +9,14 @@ const loginFilter = require('./middleware/login-filter');
 
 
 server.use('/uploads', express.static(__dirname  + '/uploads')); // Make uploads folder public
-chefServer.use(express.static('build')); // Make chef public
-chefServer.all('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/build/index.html'));
-})
 server.use(express.static('public')); // Make client public
+chefServer.use(express.static('build')); // Make chef public
 // server.use(cors({ origin: "http://localhost:4200" })); // For dev only
 server.use(cors());
 server.use(express.json());
+chefServer.use(cors());
+chefServer.use(express.json());
+
 
 // JWT authenticator
 server.use('/api', loginFilter());
@@ -27,9 +27,12 @@ server.use('/api', apiController);
 
 // For PWA support
 server.all('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/index.html'));
+  res.sendFile(path.join(__dirname, '/public/index.html'));
 })
 
+chefServer.all('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/build/index.html'));
+})
 
 server.use(errorHandler);
 
