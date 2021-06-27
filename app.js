@@ -36,5 +36,5 @@ chefServer.all('*', (req, res) => {
 
 server.use(errorHandler);
 
-server.listen(process.env.PORT || 3000, () => console.log("Listening on http://localhost:3000"));
-chefServer.listen(3001, () => console.log("Chef server listening on http://localhost:3001"));
+server.listen(process.env.PORT || 3000, () => console.log("Listening on port 3000"));
+chefServer.listen(3001, () => console.log("Chef server listening on port 3001"));
