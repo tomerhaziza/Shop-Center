@@ -31,7 +31,7 @@ server.all('*', (req, res) => {
 })
 
 chefServer.all('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/build/index.html'));
+  res.sendFile(path.join(__dirname, '/public/index.html'));
 })
 
 server.use(errorHandler);
