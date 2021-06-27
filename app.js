@@ -10,9 +10,9 @@ const loginFilter = require('./middleware/login-filter');
 
 server.use('/uploads', express.static(__dirname  + '/uploads')); // Make uploads folder public
 chefServer.use(express.static('build')); // Make chef public
-chefServer.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, '/build/index.html'));
-});
+chefServer.all('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/build/index.html'));
+})
 server.use(express.static('public')); // Make client public
 // server.use(cors({ origin: "http://localhost:4200" })); // For dev only
 server.use(cors());
