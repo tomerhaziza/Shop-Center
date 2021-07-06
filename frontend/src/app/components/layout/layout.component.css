@@ -1,0 +1,128 @@
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.flexbox{
+    display: flex;
+    flex-grow: 1;
+}
+
+main{
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.open{
+    flex-basis: 25%;
+    transition: flex-basis 0.2s ease;
+}
+
+.closed{
+    flex-basis: 0%;
+    transition: flex-basis 0.2s ease;
+}
+.open-cart{
+    position: fixed;
+    right: 12px;
+    top: 145px;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    border: transparent 1px solid;
+    padding: 7px;
+    cursor: pointer;
+    font-size: 1.6rem;
+    background-color: rgb(19, 151, 204);
+    color: white;
+}
+
+.cog{
+    padding: 1.5px;
+}
+
+.button-hidden{
+    display: none;
+}
+
+.open-cart:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(19, 151, 204);
+    border: rgb(19, 151, 204) 1px solid;
+}
+
+.cart-qty{
+    position: absolute;
+    z-index: 55;
+    right: -7px;
+    top: -6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 600;
+    padding: 2px 2.5px 2px 3px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(19, 151, 204);
+    border: rgb(19, 151, 204) 1px solid;
+}
+.open-cart:hover .cart-qty{
+    color: rgb(255, 255, 255);
+    background-color: rgb(19, 151, 204);
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+  }
+
+.user {
+    padding-top: 130px;
+}
+
+.guest{
+    padding-top: 70px;
+}
+
+@media only screen and (max-width: 1435px) {
+    .open {
+        flex-basis: 34%;
+    }
+  }
+
+  @media only screen and (max-width: 1115px) {
+    .open {
+        flex-basis: 40%;
+    }
+  }
+
+  @media only screen and (max-width: 962px) {
+    .open {
+        flex-basis: 50%;
+    }
+  }
+
+  @media only screen and (max-width: 810px) {
+    .open {
+        flex-basis: 70%;
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    .open {
+        flex-basis: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 560px) {
+    .open {
+        flex-basis: 0;
+    }
+  }

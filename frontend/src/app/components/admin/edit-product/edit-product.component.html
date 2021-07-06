@@ -1,0 +1,56 @@
+<div class="edit-product" *ngIf='stateService.productToEdit'>
+    <form #addProductForm="ngForm">
+
+        <div class="top">
+            <mat-form-field appearance="outline">
+                <mat-label>Product Name</mat-label>
+                <input matInput #nametInput="ngModel" name="name" [(ngModel)]="stateService.productToEdit.name"
+                    required>
+                <mat-icon matSuffix>create</mat-icon>
+                <mat-error align='end' *ngIf='!stateService.productToEdit.name'>*required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Product Price</mat-label>
+                <input matInput type="number" #pricetInput="ngModel" name="price"
+                    [(ngModel)]="stateService.productToEdit.price" required>
+                <mat-icon matSuffix>attach_money</mat-icon>
+                <mat-error align='end' *ngIf='!stateService.productToEdit.price'>*required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="input" hintLabel='Click if you wish to change' appearance="outline">
+                <mat-label>Product Category</mat-label>
+                <mat-select [(ngModel)]='stateService.productToEdit.categoryId' name="category" required>
+                    <mat-option *ngFor="let c of stateService.categoriesList" value={{c.id}}>
+                        {{c.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-icon matSuffix>category</mat-icon>
+                <mat-error align='end' *ngIf='!stateService.productToEdit.categoryId'>*required</mat-error>
+            </mat-form-field>
+
+            <div class="file-upload">
+                <input #imageInput hidden="true" type="file" onclick="value=null" required
+                (change)="onFileChanged($event)" accept=".png, .JPEG, .jpg" />
+            <button mat-flat-button color="primary" (click)="imageInput.click()">Change Image (PNG/JPEG)</button>
+            </div>
+            
+            <div class="temp-image">
+                <img src="http://{{apiUrl}}/uploads/{{stateService.productToEdit.imageUrl}}"
+                    *ngIf='!tempImage'>
+                <img src="{{tempImage}}" *ngIf='tempImage'>
+            </div>
+
+        </div>
+
+        <div class="bottom">
+            <button (click)='onSaveChangedProduct()' [disabled]='addProductForm.form.invalid'>Save Changes</button>
+        </div>
+    </form>
+
+</div>
+
+<div class="changes-saved" *ngIf='!stateService.productToEdit'>
+    <i class="far fa-check-circle check-icon"></i>
+    Changes Saved
+</div>

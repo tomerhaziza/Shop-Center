@@ -1,0 +1,91 @@
+.store{
+    margin-left: 4.5%;
+    margin-right: 4.5%;
+    transition: margin 0.2s ease;
+}
+
+.cart-open{
+    margin-right: 1%;
+}
+
+.current {
+    font-size: 2.3rem;
+    margin: 25px 0;
+    padding-left: 20px;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: bold;
+}
+
+.no-search-results{
+    font-size: 1.8rem;
+    padding-left: 20px;
+    font-family: 'Didact Gothic', sans-serif;
+
+}
+
+.products{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-item{
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-bottom: 40px;
+    flex-basis: 20%;
+    transition: flex-basis 0.3s ease;    
+}
+
+.loader{
+    text-align: center;
+    padding-top: 15vh;
+}
+
+@media only screen and (max-width: 1524px) {
+    .flex-item {
+        flex-basis: 25%;
+    }
+
+  }
+
+ @media only screen and (max-width: 1280px) {
+    .flex-item {
+        flex-basis: 33%;
+    }
+  }
+
+  @media only screen and (max-width: 1002px) {
+    .flex-item {
+        flex-basis: 50%;
+    }
+  }
+
+  @media only screen and (max-width: 720px) {
+    .flex-item {
+        flex-grow: 1;
+    }
+  }
+
+  @media only screen and (max-width: 560px) {
+    .open {
+        flex-basis: 0;
+    }
+    
+    .flex-item{
+        flex-basis: 100%;
+    }
+
+    .cart-open{
+        margin-right: 1%;
+    }
+
+    .store{
+        margin: 0;
+    }
+
+    .flex-item{
+        margin-bottom: 20px;
+    }
+
+  }
+  

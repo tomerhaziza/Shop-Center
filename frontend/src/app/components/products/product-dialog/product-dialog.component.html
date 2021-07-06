@@ -1,0 +1,31 @@
+<div class="dialog">
+    <div class="top">
+        <div class="close-dialog">
+            <i class="fas fa-times close-icon" (click)='closeDialog()'></i>
+        </div>
+        <img src='http://{{apiUrl}}/uploads/{{product.imageUrl}}' alt='{{product.name}}'>
+    </div>
+    <div class="hr"></div>
+
+    <div class="dialog-bottom">
+
+        <div class="product-details">
+            <h3>{{product.name}}</h3>
+            <p> ₪ {{product.price}} </p>
+        </div>
+
+        <div class="product-amount">
+            <p class="label">Quantity</p>
+            <div class="amount-buttons">
+                <button (click)='onDecreaseAmount()'> - </button>
+                <input type="number" class="amount-input" [className]="error ? 'amount-input error' : 'amount-input'" [(ngModel)]='amount' min="1">
+                <button (click)='onIncreaseAmount()'>+</button>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <p *ngIf='totalPrice' class="label">Total Price: {{totalPrice}}</p>
+            <button class="add-button" (click)='onAddToCart()'>Add to cart<i class="fas fa-shopping-cart"></i></button>
+        </div>
+    </div>
+</div>

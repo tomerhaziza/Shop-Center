@@ -1,0 +1,28 @@
+<div class="categories-normal" 
+style="background: url('http://{{apiUrl}}/uploads/app-images/header-tile.jpg');
+background-size: 10%;">
+    <ul>
+        <a *ngFor="let category of stateService.categoriesList" (click)='onNavigate(category)'
+            [className]="condition(category.id) ? 'active' : 'disabled'">{{category.name}}</a>
+    </ul>
+</div>
+
+<div class="categories-mobile"
+style="background: url('http://{{apiUrl}}/uploads/app-images/header-tile.jpg');
+background-size: 10%;">
+    <div class="top">
+        <div class="search">
+            <app-search></app-search>
+        </div>
+        <div [className]="isMenuOpen ? 'menu-open activated unselectable' : 'menu-open unselectable'" (click)='onOpenMenu()'>
+            <mat-icon matSuffix>menu</mat-icon>
+        </div>
+    </div>
+
+    <div [className]="isMenuOpen ? 'categories open' : 'categories closed'">
+        <ul>
+            <a *ngFor="let category of stateService.categoriesList" (click)='onNavigate(category)'
+                [className]="condition(category.id) ? 'active' : 'disabled'">{{category.name}}</a>
+        </ul>
+    </div>
+</div>

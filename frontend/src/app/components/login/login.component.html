@@ -1,0 +1,79 @@
+<div class="login">
+        <div class="current">
+                Login
+        </div>
+
+        <div class="section">
+                <div class="login-form">
+                        <form #loginForm="ngForm" (ngSubmit)='onLogin(loginForm)'>
+                                <mat-form-field class="input" appearance="outline">
+                                        <mat-label>Email Address</mat-label>
+                                        <input #emailInput="ngModel" matInput name="email"
+                                                [(ngModel)]="userLoginDetails.email" required>
+                                        <mat-icon matSuffix>email</mat-icon>
+                                        <mat-error align='end' *ngIf='!userLoginDetails.email'>
+                                                *required
+                                        </mat-error>
+                                        <mat-error *ngIf='emailInput.errors?.wrongEmail'>
+                                                Email address does not exist
+                                        </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field class="input" appearance="outline">
+                                        <mat-label>Password</mat-label>
+                                        <input #passwordInput="ngModel" matInput type="password" name="password"
+                                                [(ngModel)]="userLoginDetails.password" required>
+                                        <mat-icon matSuffix>lock</mat-icon>
+                                        <mat-error align='end'
+                                                *ngIf='!userLoginDetails.password && !passwordInput.errors?.wrongPassword'>
+                                                *required
+                                        </mat-error>
+                                        <mat-error *ngIf='passwordInput.errors?.wrongPassword'>
+                                                Wrong password
+                                        </mat-error>
+                                </mat-form-field>
+
+                                <div class="buttons">
+                                        <button class="login-button" [disabled]="loginForm.form.invalid">Log In</button>
+                                </div>
+                        </form>
+                        <h2>or</h2>
+                        <div class="oauth-buttons">
+                                <cool-google-button class="google-btn" color="dark" (click)="signInWithGoogle()">
+                                        Login with Google
+                                </cool-google-button>
+                                <!-- <cool-facebook-button color="dark" (click)="signInWithGoogle()">
+                                        Login with Facebook
+                                </cool-facebook-button> -->
+                        </div>
+                        <div class="signup-link">
+                                <p>
+                                        Don't have an account?
+                                </p>
+                                <a routerLink='/register'>Sign Up</a>
+                        </div>
+                </div>
+                <div class="cards">
+                        <div class="card">
+                                <img src="https://img.freepik.com/free-photo/blurred-background-supermarket-aisle-with-products_62890-121.jpg?size=626&ext=jpg&ga=GA1.2.855662366.1617235200"
+                                        alt="">
+                                <div class="right">
+                                        <h3>{{productsCount}} products</h3>
+                                        <p>
+                                                available to shop across the catalog
+                                        </p>
+                                </div>
+                        </div>
+
+                        <div class="card">
+                                <img src="https://d2d8wwwkmhfcva.cloudfront.net/347x/d2guulkeunn7d8.cloudfront.net/assets/homepage/same_day_delivery-a00a9a59cbdfc41e7449cbdd04c12d27303284bef1a8fe957ec2a0112a70d7e7.jpg"
+                                        alt="">
+                                <div class="right">
+                                        <h3>{{ordersCount}} orders</h3>
+                                        <p>
+                                                delivered to our satisfied customers!
+                                        </p>
+                                </div>
+                        </div>
+                </div>
+        </div>

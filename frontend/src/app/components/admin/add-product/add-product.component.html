@@ -1,0 +1,50 @@
+<div class="add-product" *ngIf='!productAdded'>
+    <form #addProductForm="ngForm">
+        <div class="top">
+            <mat-form-field appearance="outline">
+                <mat-label>Product Name</mat-label>
+                <input matInput #nametInput="ngModel" name="name" [(ngModel)]="newProductDetails.name" required>
+                <mat-icon matSuffix>create</mat-icon>
+                <mat-error align='end'>*required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Product Price</mat-label>
+                <input matInput type="number" #pricetInput="ngModel" name="price" [(ngModel)]="newProductDetails.price"
+                    required>
+                <mat-icon matSuffix>attach_money</mat-icon>
+                <mat-error align='end' *ngIf='!newProductDetails.price'>*required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="input" appearance="outline">
+                <mat-label>Product Category</mat-label>
+                <mat-select [(ngModel)]="newProductDetails.categoryId" name="category" required>
+                    <mat-option *ngFor="let c of stateService.categoriesList" value={{c.id}}>
+                        {{c.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-icon matSuffix>category</mat-icon>
+                <mat-error align='end'>*required</mat-error>
+            </mat-form-field>
+
+            <!-- <select [(ngModel)]="newProductDetails.categoryId" name="categoryId">
+              <option *ngFor="let c of stateService.categoriesList" [ngValue]="c.id">{{c.name}}</option>
+          </select> -->
+
+            <input #imageInput hidden="true" type="file" onclick="value=null" required
+                (change)="onFileChanged($event)" accept=".png, .JPEG, .jpg" />
+            <button mat-flat-button color="primary" (click)="imageInput.click()">Choose Image (PNG/JPEG)</button>
+            <div class="temp-image" *ngIf='tempImage'>
+                <img src="{{tempImage}}">
+            </div>
+        </div>
+        <div class="bottom">
+            <button (click)='onAddProduct()' [disabled]='addProductForm.form.invalid || !tempImage'>Add Product</button>
+        </div>
+    </form>
+</div>
+
+<div class="product-added" *ngIf='productAdded'>
+    <i class="far fa-check-circle check-icon"></i>
+    Product added successfully
+</div>

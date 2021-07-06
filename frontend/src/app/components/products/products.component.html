@@ -1,0 +1,22 @@
+<div [className]='stateService.isCartOpen ? "store cart-open" : "store cart-closed"'>
+    <div class="current" *ngIf='stateService.categoriesList && categoryId'>
+        {{stateService.categoriesList[categoryId-1].name}}
+    </div>
+
+    <div class="current" *ngIf='searchQuery'>
+        Search: {{searchQuery}}
+    </div>
+
+    <div class="no-search-results" *ngIf='searchQuery && noResults'>
+        No results.
+    </div>
+
+    <div class="products">
+        <div *ngFor='let product of productsList' class="flex-item">
+            <app-product class="stretch" [product]='product'></app-product>
+        </div>
+    </div>
+    <div class="loader" *ngIf='!productsList && !noResults'>
+        <app-loader></app-loader>
+    </div>
+</div>

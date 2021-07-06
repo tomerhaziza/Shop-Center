@@ -1,0 +1,45 @@
+.dialog{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-width: 35vw;
+    min-height: 30vh;
+}
+
+h1{
+    font-family: 'Open Sans';
+    padding: 5px 0 25px;
+}
+
+.reciept{
+    padding: 30px;
+}
+
+a{
+    font-size: 1.2rem;
+    color: rgb(8, 90, 145);
+    cursor: pointer;
+}
+
+.continue-button{
+    text-align: right;
+}
+
+button{
+    padding: 15px 25px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+    margin-right: 15px;
+}
+
+button:hover {
+    background-color: #ececec;
+}
+
+button:active {
+    background-color: #dfdfdf;
+}

@@ -1,0 +1,78 @@
+<div [className]="stateService.isCartOpen ? 'shopping-cart open' : 'shopping-cart closed'">
+
+    <!-- CART FOR USER -->
+    <header class="cart-header unselectable" *ngIf=!stateService.userAuth.isAdmin>
+        <i class="fas fa-chevron-right close-cart" title="Close" (click)='onCloseCart()'></i>
+        <h2 *ngIf='!stateService.isInCheckout'>
+            Your Cart <span
+                *ngIf='stateService.shoppingCart.cartItems.length'>({{stateService.shoppingCart.cartItems.length}})</span>
+        </h2>
+
+        <h2 *ngIf='stateService.isInCheckout'>
+            Items in cart ({{stateService.shoppingCart.cartItems.length}})
+        </h2>
+
+        <i class="fas fa-trash-alt right-button" (click)='emptyShoppingCart()' title="Empty shopping cart"
+            *ngIf='!stateService.isInCheckout'></i>
+        <div class="clearfix" *ngIf='stateService.isInCheckout'> </div>
+    </header>
+
+    <!-- CONTROL PANEL FOR ADMIN -->
+    <header class="cart-header unselectable" *ngIf='stateService.userAuth.isAdmin'>
+        <i class="fas fa-chevron-right close-cart" title="Close" (click)='onCloseCart()'></i>
+
+        <h2 *ngIf='!stateService.isInAddProduct && !stateService.isInChangeProduct'>CONTROL PANEL</h2>
+        <h2 *ngIf='stateService.isInAddProduct'>NEW PRODUCT</h2>
+        <h2 *ngIf='stateService.isInChangeProduct'>EDIT PRODUCT</h2>
+        <i title="Add a new product" (click)='onShowAddProductComponent()'
+            [className]="!stateService.isInAddProduct ? 'fas fa-plus right-button' : 'fas fa-plus right-button activated'"></i>
+    </header>
+
+    <app-search-cart></app-search-cart>
+
+    <div #container class="cart-body">
+        <!-- CART FOR USER -->
+        <div class="cart-items" *ngIf='!stateService.userAuth.isAdmin'>
+            <div *ngFor='let item of stateService.shoppingCart.cartItems' class="flex-item">
+                <app-cart-item [item]='item'></app-cart-item>
+            </div>
+
+            <div class="cart-empty"
+                *ngIf='!stateService.shoppingCart.totalPrice && !stateService.userAuth.isAdmin'>
+                Your cart is empty
+                <img src="http://{{apiUrl}}/uploads/app-images/empty-cart.svg">
+            </div>
+        </div>
+
+        <!-- Control panel for admin -->
+        <div class="add-product" *ngIf='stateService.userAuth.isAdmin && stateService.isInAddProduct'>
+            <app-add-product></app-add-product>
+        </div>
+
+        <div class="change-product" *ngIf='stateService.userAuth.isAdmin && stateService.isInChangeProduct'>
+            <app-edit-product></app-edit-product>
+        </div>
+
+    </div>
+
+
+    <footer class="cart-footer" *ngIf='!stateService.userAuth.isAdmin'>
+        <div class="subtotal">
+            <div class="clearfix"
+                *ngIf='stateService.isInCheckout || !stateService.shoppingCart.cartItems.length'> </div>
+            <p>
+                <label class="unselectable">Subtotal: </label>
+                {{stateService.shoppingCart.totalPrice}}₪
+            </p>
+            <div class="checkout-button"
+                *ngIf='!stateService.isInCheckout && stateService.shoppingCart.cartItems.length'>
+                <app-button value='Checkout' (click)='onCheckout()' title="Proceed to checkout"></app-button>
+            </div>
+
+            <div class="clearfix"
+                *ngIf='stateService.isInCheckout || !stateService.shoppingCart.cartItems.length'> </div>
+        </div>
+    </footer>
+
+
+</div>

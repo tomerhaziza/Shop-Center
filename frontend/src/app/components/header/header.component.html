@@ -1,0 +1,19 @@
+<div class="header" style="background: url('http://{{apiUrl}}/uploads/app-images/header-top-tile.png'); background-size: 5%;">
+
+    <div class="top">
+        <div class="logo" title="Home" routerLink="/">
+            <img src="http://{{apiUrl}}/uploads/app-images/logo.png" alt="">
+        </div>
+        <div class="search">
+            <app-search></app-search>
+        </div>
+        <div class="user-panel">
+            <app-navbar></app-navbar>
+        </div>
+
+    </div>
+
+    <div class="categories" *ngIf='stateService.userAuth.isLoggedIn'>
+        <app-categories></app-categories>
+    </div>
+</div>

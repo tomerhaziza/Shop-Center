@@ -1,0 +1,31 @@
+<div class="item">
+    <img src='http://{{apiUrl}}/uploads/{{item.imageUrl}}' alt='{{item.name}}' [className]="stateService.isInCheckout ? 'cursor-default' : 'cursor-pointer'" (click)='openDialog()'>
+
+    <div class="item-details">
+        <h3 [className]="searchedInCart() ? 'product-name highlight-result' : 'product-name'">{{item.name}}</h3>
+        <p>
+            {{item.price}}₪
+        </p>
+    </div>
+    
+    <div class="amount-buttons" *ngIf='!stateService.isInCheckout'>
+        <button (click)='increaseAmount()'>+</button>
+        <p>
+            {{item.amount}}
+        </p>
+        <button (click)='decreaseAmount()'> - </button>
+    </div>
+
+    <div class="amount-buttons" *ngIf='stateService.isInCheckout'>
+        <p>
+            x{{item.amount}}
+        </p>
+    </div>
+    <div class="total-price">
+        {{item.totalPrice}}₪
+    </div>
+    <div class="remove-item">
+        <i class="fas fa-times remove-icon" (click)='removeFromCart()' *ngIf='!stateService.isInCheckout'></i>
+    </div>
+    
+</div>

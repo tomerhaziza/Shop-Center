@@ -1,0 +1,40 @@
+.header{
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 3px 7px rgb(41 41 41 / 8%);
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 70px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.logo{
+    cursor: pointer;
+}
+
+.logo img{
+    height: 40px;
+}
+
+.search{
+    flex-basis: 60%;
+}
+
+@media only screen and (max-width: 950px) {
+    .search {
+        display: none;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .top {
+        padding: 0 10px;
+    }
+    .user-panel{
+        margin-top: 7px;
+    }
+}
+

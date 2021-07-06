@@ -1,0 +1,165 @@
+.dialog{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    min-width: 40vw;
+    min-height: 45vh;
+    overflow: hidden;
+  }
+  
+  img{
+    max-height: 250px;
+    max-width: 250px;
+    margin-bottom: 45px;
+  }
+
+  .hr{
+    border-bottom: 1px solid #E6E6E6;
+  }
+  
+  .dialog-bottom{
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .product-details{
+      flex-basis: 30%;
+  }
+  
+  .product-amount {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 40%;
+  }
+  
+  .amount-input {
+    width: 30px;
+    height: 25px;
+    margin: 0 5px;
+    background-color: none;
+    text-align: center;
+    border: none;
+  }
+  .amount-input:focus{
+    outline: 1px rgb(98, 128, 59) solid;
+  }
+  
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  
+  .amount-buttons button{
+    border: none;
+    border-radius: 30px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    margin-bottom: 7px;
+    outline: none;
+  }
+  .amount-buttons button:hover{
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .amount-buttons button:active{
+    background-color: rgb(210, 210, 210);
+  }
+  
+  .product-details h3{
+    padding: 10px 0 7px;
+    font-size: 1.25rem;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .buttons{
+    flex-basis: 30%;
+
+  }
+  .add-button{
+    margin-top: 5px;
+    padding: 12px;
+    border-radius: 7px;
+    border: none;
+    background-color: rgb(15, 144, 199);
+    color: white;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 0.15em 0.3em rgb(0 0 0 / 20%);
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .add-button:hover{
+    background-color: rgba(15, 144, 199, 0.808);
+  }
+  
+  .add-button:active{
+    background-color: rgba(15, 144, 199, 0.685);
+  }
+  
+  .fa-shopping-cart{
+   padding-left: 7px;
+   font-size: 0.95rem;
+  }
+
+  .label{
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+  }
+  
+
+  .close-dialog{
+    text-align: right;
+  }
+  .close-icon{
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.error{
+  outline: 1px rgb(255, 0, 0) solid;
+}
+
+@media only screen and (max-width: 1050px) {
+  .add-button{
+    font-size: 0.85rem;
+  }
+
+}
+
+@media only screen and (max-width: 560px) {
+  .dialog-bottom{
+    flex-direction: column;
+  }
+
+  img{
+    max-height: 150px;
+    max-width: 150px;
+    margin-bottom: 45px;
+  }
+
+  .product-amount{
+    margin: 15px 0
+  }
+
+  .amount-input {
+    width: 25px;
+    height: 20px;
+    margin: 0 5px;
+    background-color: none;
+    text-align: center;
+    border: none;
+  }
+
+  .add-button{
+    padding: 12px 35px;
+  }
+
+}

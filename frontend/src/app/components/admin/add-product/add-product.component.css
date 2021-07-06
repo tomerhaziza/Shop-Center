@@ -1,0 +1,55 @@
+img {
+    height: 150px;
+    width: 150px;
+}
+
+.add-product{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 25px;
+}
+
+.check-icon{
+    font-size: 4rem;
+    margin-bottom: 35px;
+    color: rgb(17, 204, 0);
+}
+
+.product-added{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 53vh;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.temp-image{
+    margin-top: 15px;
+}
+
+.bottom{
+    margin-top: 15px;
+}
+
+.bottom button{
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.bottom button:hover {
+    background-color: #ececec;
+}
+
+.bottom button:active {
+    background-color: #dfdfdf;
+}

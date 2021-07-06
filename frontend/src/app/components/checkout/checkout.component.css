@@ -1,0 +1,168 @@
+.checkout{
+    margin: 0 auto;
+    padding: 0 15%;
+    transition: padding 0.3s ease;
+}
+
+mat-icon{
+    color: rgb(114, 114, 114);
+}
+
+.current {
+    font-size: 2.3rem;
+    margin: 15px 0 25px;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: bold;
+}
+
+.section{
+    display: flex;
+    background-color: white;
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%);
+    border-radius: 10px;
+}
+
+.title{
+    padding-left: 3%;
+    flex-basis: 25%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title div{
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: 600;
+    color: rgb(63, 63, 63);
+    font-size: 2.3rem;
+}
+
+.inputs{
+    flex-basis: 75%;
+    padding: 0 20px;
+}
+
+
+.input{
+    display: block;
+    margin-bottom: 15px;
+}
+
+.choosen-date{
+    border: 2px #509E24 solid;
+    box-shadow: 0 0 7px 0 rgb(0 0 0 / 22%);
+    padding: 35px;
+    margin-top: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invalid{
+    border: 2px #ff0000 solid;
+    padding: 25px;
+}
+
+.delivery-date-details p{
+    font-family: 'Didact Gothic', sans-serif;
+    font-weight: 700;
+}
+
+.date-format{
+    padding-top: 10px;
+    font-size: 1.6rem;
+}
+
+.schedule-icon{
+    margin-right: 10px;
+    font-size: 3rem;
+    color: #509E24;
+    height: inherit;
+    width: inherit;
+}
+.invalid-icon{
+    color: red;
+}
+
+
+.complete-button{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-right: 30px;
+    text-align: right;
+}
+
+.top, .delivery-date, .address {
+    display: flex;
+}
+
+.payment{
+    flex-direction: column;
+}
+
+.hr{
+    margin: 40px 30px 0;
+    border-bottom: 1px solid #E6E6E6;
+  } 
+
+.total-price{
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 1.15rem;
+}
+
+
+.checkout-button{
+    padding: 15px;
+    margin-left: 30px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.checkout-button:hover {
+    background-color: #ececec;
+}
+
+.checkout-button:active {
+    background-color: #dfdfdf;
+}
+
+@media only screen and (max-width: 1440px) {
+    .checkout{
+        padding: 0 5%;
+    }
+    .section{
+        padding: 20px;
+
+    }
+}
+
+@media only screen and (max-width: 812px) {
+    .section{
+        padding: 25px 12px;
+    }
+
+    .top, .delivery-date, .address{
+        flex-direction: column;
+    }
+
+    .title{
+        flex-direction: row;
+    }
+    .title div{
+        margin-right: 9px;
+        font-size: 2rem;
+    }
+
+    .inputs{
+        padding-left: 8px;
+        padding-top: 20px;
+    }
+}

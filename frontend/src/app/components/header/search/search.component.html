@@ -1,0 +1,6 @@
+<div *ngIf='stateService.userAuth.isLoggedIn' class="search-product" (keyup.enter)='onSearchProduct()'>
+    <input type="text" placeholder="What are you looking for?" [(ngModel)]='searchQuery'>
+    <button (click)='onSearchProduct()'>
+        <mat-icon matSuffix>search</mat-icon>
+    </button>
+</div>

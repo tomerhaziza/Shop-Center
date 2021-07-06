@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chau+Philomene+One&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html, body { 
+    height: 100%;
+    background: url('/uploads/app-images/background-tile.png');
+}
+
+body { font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.unselectable {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+button{
+    font-family: 'Open Sans', 'sans-serif';
+}
+
+/* Product dialog on mobile adjustment */
+@media only screen and (max-width: 560px) {
+.app-dialog .mat-dialog-container{
+    width: 100vw;
+}
+}

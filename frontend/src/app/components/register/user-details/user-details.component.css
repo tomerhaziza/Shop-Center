@@ -1,0 +1,67 @@
+.step-1{
+    margin: 0 auto;
+}
+
+mat-icon{
+    color: rgb(114, 114, 114);
+}
+
+.current {
+    font-size: 2.3rem;
+    margin: 15px 0 25px;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: bold;
+}
+
+.input{
+    display: block;
+    margin: 15px 0;
+
+}
+
+.buttons{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttons p,a{
+    padding-left: 5px;
+    font-size: 0.95rem;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.buttons a{
+    font-weight: 700;
+    color: black;
+    text-decoration: none;
+}
+
+.next-button{
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.next-button:hover {
+    background-color: #ececec;
+}
+
+.next-button:active {
+    background-color: #dfdfdf;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+@media only screen and (max-width: 580px) {
+    .current {
+        font-size: 1.9rem;
+    }
+}

@@ -1,0 +1,19 @@
+<div class="navbar">
+
+    <div class="user-details unselectable" *ngIf='this.stateService.userDetails && userAuth.isLoggedIn' (click)='openUserMenu()'>
+        <div [className]="dropdownOpen ? 'user user-open' : 'user'">
+            <mat-icon Suffix>account_circle</mat-icon>
+            <p>
+                {{this.stateService.userDetails.firstName}}
+            </p>
+            <p *ngIf='this.stateService.userDetails.firstName != this.stateService.userDetails.lastName'>
+                {{this.stateService.userDetails.lastName}}
+            </p>
+        </div>
+        <div [className]="dropdownOpen ? 'dropdown-content dropdown-content-open' : 'dropdown-content'">
+            <!-- <p>my account</p>
+            <p>previous orders</p> -->
+            <p (click)='onLogout()'>logout</p>
+        </div>
+    </div>
+</div>

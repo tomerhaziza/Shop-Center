@@ -1,0 +1,6 @@
+<div class="search" *ngIf='stateService.isInCheckout'>
+    <input type="text" placeholder="Search in cart" [(ngModel)]='stateService.cartSearchQuery'>
+    <div class="clear" (click)='clearSearch()'>
+        <i class="fas fa-times clear-icon"></i>
+    </div>
+</div>

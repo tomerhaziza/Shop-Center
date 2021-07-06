@@ -1,0 +1,98 @@
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    padding: 0 15px;
+}
+
+.item:hover{
+    border-top: rgba(240,240,240 0.5) 1px solid;
+    border-left: rgb(240,240,240 0.3) 1px solid;
+    border-bottom: rgb(240,240,240 0.3) 1px solid;
+    background-color: rgb(249, 249, 249);
+}
+
+.amount-buttons{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-right: 3%;
+}
+
+.amount-buttons p {
+    padding: 5px ;
+    font-size: 0.91rem;
+    cursor: default;    
+}
+
+.amount-buttons button{
+    border: none;
+    border-radius: 25px;
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    outline: none;
+  }
+
+.amount-buttons button:hover{
+    background-color: rgb(230, 230, 230);
+}
+
+.amount-buttons button:active{
+    background-color: rgb(210, 210, 210);
+}
+
+img {
+    width: 70px;
+    max-height: 70px;
+    margin-right: 5%;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.item-details{
+    flex-basis: 100%;
+}
+
+.product-name{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    display: inline;
+}
+.item-details p {
+    padding-top: 5px;
+    font-size: 0.8rem;
+}
+
+.total-price{
+    flex-basis: 25%;
+    font-size: 0.96rem;
+    text-align: center;
+}
+
+.remove-icon{
+    font-size: 1.25rem;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    align-items: center;
+    margin-bottom: 55px;
+    cursor: pointer;
+}
+
+.item:hover .remove-icon{
+    opacity: 1;
+}
+
+.highlight-result{
+    background-color: yellow;
+}
+
+@media only screen and (max-width: 450px) {
+    .remove-icon{
+        opacity: 1;
+    }
+}
+

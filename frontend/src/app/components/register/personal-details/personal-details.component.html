@@ -1,0 +1,46 @@
+<div class="step-2">
+    <div class="current">
+        Step 2: Personal Details
+    </div>
+    <form #stepTwo="ngForm" (ngSubmit)='onRegister()' novalidate>
+        <mat-form-field class="input" appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input #firstNameInput="ngModel" matInput name="firstName" [(ngModel)]="userRegisterDetails.firstName"
+                required>
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error align='end'>*required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input" appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input #lastNameInput="ngModel" matInput name="lastName" required
+                [(ngModel)]="userRegisterDetails.lastName">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error align='end'>*required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input" appearance="outline">
+            <mat-label>City</mat-label>
+            <mat-select [(ngModel)]="userRegisterDetails.city" name="city" required>
+                <mat-option *ngFor="let city of cities" value={{city}}>
+                    {{city}}
+                </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>place</mat-icon>
+            <mat-error align='end'>*required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input" appearance="outline">
+            <mat-label>Street</mat-label>
+            <input #streetInput="ngModel" matInput name="street" [(ngModel)]="userRegisterDetails.street" required>
+            <mat-icon matSuffix>apartment</mat-icon>
+            <mat-error align='end'>*required</mat-error>
+        </mat-form-field>
+        <div class="buttons">
+            <div>
+                <button class="button register-button" [disabled]="stepTwo.form.invalid">Complete</button>
+                <button class="button back-button" routerLink="/register" skipLocationChange>Back</button>
+            </div>
+        </div>
+    </form>
+</div>

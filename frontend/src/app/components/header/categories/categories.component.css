@@ -1,0 +1,131 @@
+.categories-mobile{
+    display: none;
+    box-shadow: 0 3px 7px rgb(41 41 41 / 8%);
+}
+
+.categories{
+    transition: all 0.2s ease;
+    overflow: auto;
+    
+}
+
+.categories-normal{
+    background-color: rgb(16, 37, 46);
+}
+
+.closed{
+    min-height: 0px;
+    max-height: 0px;
+}
+
+.open{
+    min-height: 150px;
+    max-height: 70vh;
+}
+
+.closed ul{
+    display: none;
+}
+
+.top{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    border-bottom: rgba(239, 249, 255, 0.2) 1px solid;
+}
+
+mat-icon{
+    font-size: 1.9rem;
+    cursor: pointer;
+}
+
+.menu-open{
+    padding: 6px 14px 6px 8px;
+    height: 47px;
+    width: 48px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 0 7px;
+    transition: background-color 0.3s ease;
+    color: white;
+}
+
+.menu-open:hover{
+    background-color: rgba(255, 255, 255, 0.20);
+}
+
+.menu-open:active{
+    background-color: rgba(255, 255, 255, 0.32);
+}
+
+.activated {
+    background-color: rgba(255, 255, 255, 0.938);
+    color: rgb(34,132,178);
+}
+
+.activated:hover{
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+.activated:active{
+    background-color: rgba(255, 255, 255, 0.795);
+}
+
+.search{
+    padding-left: 10px;
+    flex-grow: 1;
+}
+
+ul{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+a{
+    color: white;
+    text-decoration: transparent;
+    font-family: "Open Sans", sans-serif;
+    -webkit-transition: color, background-color 0.3s ease;
+    transition: color 0.2s ease;
+    padding: 18px 1.5%;
+    cursor: pointer;
+
+}
+
+a:hover{
+    color: rgb(7, 59, 82);
+    font-weight: bold;
+}
+
+.active{
+    transition: background-color 0.3s ease;
+    color: rgb(7, 59, 82);
+    font-weight: bold;
+    background-color: rgba(181, 239, 255, 0.459);
+}
+
+@media only screen and (max-width: 950px) {
+    a {
+        width: 100%;
+        text-align: center;
+        padding: 15px 1.5%;
+    }
+    .categories-normal{
+        display: none;
+    }
+
+    .categories-mobile{
+        display: block;
+
+    }
+}
+
+  
+@media only screen and (max-width: 405px) {
+    .search{
+        padding-left: 7px;
+    }
+}
+
+  

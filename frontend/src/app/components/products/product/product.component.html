@@ -1,0 +1,37 @@
+<div class="product">
+    <div class="product-top">
+        <div class="image-wrap">
+            <img src='http://{{apiUrl}}/uploads/{{product.imageUrl}}' alt='{{product.name}}' (click)='openDialog()'
+                [className]="stateService.userAuth.isAdmin ? 'cursor-default' : 'cursor-pointer'">
+        </div>
+        <h3>{{product.name}}</h3>
+        <p> ₪ {{product.price}} </p>
+    </div>
+
+
+    <div class="product-bottom">
+
+        <div class="product-amount" *ngIf='!stateService.userAuth.isAdmin'>
+            <div class="amount-buttons">
+                <button (click)='onDecreaseAmount()'> - </button>
+                <input type="number" class="amount-input" [className]="error ? 'amount-input error' : 'amount-input'"
+                    [(ngModel)]='amount' min="1">
+                <button (click)='onIncreaseAmount()'>+</button>
+            </div>
+            <button [className]='buttonText != "Add to cart" && buttonText != "Adding..." ? "add-button added" : "add-button"' (click)="onAddToCart()">
+                <div class="add-button-txt" [@buttonTextStateTrigger]="buttonTextState"
+                    (@buttonTextStateTrigger.done)="buttonTextTransitioned($event)">
+                    <i class="fas fa-shopping-cart button-icon" *ngIf='buttonText == "Add to cart"'></i>
+                    <i class="fas fa-check button-icon" *ngIf='buttonText != "Add to cart" && buttonText != "Adding..."'></i>
+                    {{ buttonText }}
+                </div>
+            </button>
+
+        </div>
+
+        <div class="edit-product" *ngIf='stateService.userAuth.isAdmin'>
+            <i class="far fa-edit edit-icon" (click)='onChangeProduct()' title="Edit Product"></i>
+        </div>
+    </div>
+
+</div>

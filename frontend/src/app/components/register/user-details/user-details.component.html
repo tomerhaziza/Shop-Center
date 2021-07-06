@@ -1,0 +1,57 @@
+<div class="step-1">
+    <div class="current">
+        Step 1: User Details
+    </div>
+    <form #stepOne="ngForm" (ngSubmit)='onNext(stepOne)' novalidate>
+        <mat-form-field class="input" hintLabel='Enter numbers only' appearance="outline">
+            <mat-label>ID Number</mat-label>
+            <input #idInput="ngModel" matInput type="number" name="id" [(ngModel)]="userRegisterDetails.id" (blur)='isExist(stepOne)'
+                required maxlength="9"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" >
+            <mat-icon matSuffix>badge</mat-icon>
+            <mat-error align='end' *ngIf='!userRegisterDetails.id'>*required</mat-error>
+            <mat-error *ngIf='idInput.errors?.userExist'>
+                ID already exists!
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input" hintLabel='Example: your@email.com' appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <input #emailInput="ngModel" matInput name="email" required email [(ngModel)]="userRegisterDetails.email"
+                (blur)='isExist(stepOne)'>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error align='end' *ngIf='!userRegisterDetails.email'>*required</mat-error>
+            <mat-error *ngIf='emailInput.errors?.userExist'>
+                Email address already exists!
+            </mat-error>
+            <mat-error *ngIf='emailInput.errors?.email'>
+                Invalid email. Example: your@email.com
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" #passwordInput="ngModel" matInput name="password"
+                [(ngModel)]="userRegisterDetails.password" (input)='passwordsDontMatch(stepOne)' required>
+            <mat-icon matSuffix>lock</mat-icon>
+            <mat-error align='end' >*required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input" appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input type="password" #confirmPasswordInput="ngModel" matInput name="confirmPassword"
+                [(ngModel)]="userRegisterDetails.confirmPassword" (input)='passwordsDontMatch(stepOne)' required>
+            <mat-icon matSuffix>lock</mat-icon>
+            <mat-error align='end' *ngIf='!userRegisterDetails.confirmPassword'>*required</mat-error>
+            <mat-error *ngIf='!confirmPasswordInput.pristine && confirmPasswordInput.errors?.passwordsDontMatch'>
+                Passwords do not match!
+            </mat-error>
+        </mat-form-field>
+        <div class="buttons">
+            <p>
+                Already have an account? <a routerLink='/login'>Sign In</a>
+            </p>
+            <button class="next-button" [disabled]="stepOne.form.invalid">Next</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,34 @@
+<body>
+    <header class="sticky">
+        <app-header></app-header>
+    </header>
+
+    <div [className]="stateService.userAuth.isLoggedIn ? 'flexbox user' : 'flexbox guest'">
+        <main>
+            <div>
+                <router-outlet></router-outlet>
+            </div>
+
+            <div>
+                <app-footer></app-footer>
+            </div>
+        </main>
+
+        <div *ngIf='stateService.userAuth.isLoggedIn' (click)='onOpenCart()'
+            [className]="!stateService.isCartOpen ? 'open-cart' : 'open-cart button-hidden'">
+            <div *ngIf='!stateService.userAuth.isAdmin'>
+                <i class="fas fa-shopping-basket" title='Open Cart'></i>
+                <span class="cart-qty"
+                    *ngIf='stateService.shoppingCart.cartItems.length && !stateService.userAuth.isAdmin'>{{stateService.shoppingCart.cartItems.length}}</span>
+            </div>
+            <div *ngIf='stateService.userAuth.isAdmin'>
+                <i class="fas fa-cog cog" title="Open Control Panel"></i>
+            </div>
+        </div>
+
+        <aside *ngIf='stateService.userAuth.isLoggedIn' [className]="stateService.isCartOpen ? 'cart open' : 'cart closed'">
+            <app-shopping-cart></app-shopping-cart>
+        </aside>
+    </div>
+
+</body>

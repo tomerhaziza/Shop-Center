@@ -1,0 +1,213 @@
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px 0;
+    justify-content: center;
+    background-color: rgb(252, 252, 252);
+    box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%);
+}
+
+.message{
+    padding-bottom: 30px;
+}
+
+.card{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: white;
+    height: 370px;
+    border-radius: 10px;
+    margin: 20px;
+    text-align: center;
+    border: 1px rgb(210, 210, 210) solid;
+    box-shadow: 0 0 15px 0 rgb(0 0 0 / 8%);
+    flex-basis: 250px;
+}
+
+.top{
+    font-family: 'Open Sans', 'sans-serif';
+    padding: 0 10px;
+}
+
+.top h3{
+  padding-top: 30px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+
+img{
+    border-radius: 0 0 10px 10px;
+    max-width: 100%;
+    height: 147px;
+}
+
+.welcome-message-section{
+    font-family: 'Ubuntu Condensed', sans-serif;
+    margin: 20px 20%;
+    background-color: white;
+    padding: 40px;
+    box-shadow: 0 0 15px 0 rgb(0 0 0 / 7%);
+    text-shadow: 1px 1px 2px #000;
+    color: white;
+    border-radius: 8px;
+    transition: margin 0.3s ease;
+}
+
+.welcome-title{
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+}
+
+.welcome-messages-wrap{
+    margin: 0 auto;
+    text-align: center;
+    padding: 80px 10px;
+    border-radius: 7px;
+}
+
+
+.welcome-message{
+    font-family: 'Open Sans';
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.shop-button{
+    text-align: right;
+}
+
+h2{
+    padding: 70px 0 50px 0;
+    text-align: center;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 2.3rem;
+}
+
+.customer-favorites{
+    text-align: left;
+    margin-left: 6%;
+}
+
+.fa-star{
+    color: rgb(255, 227, 66);
+    margin-right: 10px;
+}
+  
+
+/* General button style */
+.btn {
+    border: none;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 25px 80px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    font-family: 'Open Sans', 'sans-serif';
+  }
+  
+  .btn:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  
+  /* Pseudo elements for icons */
+  .btn:before {
+    font-family: 'FontAwesome';
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  
+  /* Icon separator */
+  .btn-sep {
+    padding: 22px 30px 22px 85px;
+  }
+  
+  .btn-sep:before {
+    background: rgba(0,0,0,0.15);
+  }
+  
+
+  /* Button 2 */
+  .btn-2 {
+    background: #3498db;
+    color: #fff;
+  }
+  
+  .btn-2:hover {
+    background: #2980b9;
+  }
+  
+  .btn-2:active {
+    background: #2980b9;
+    top: 2px;
+  }
+  
+  .btn-2:before {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    line-height: 3;
+    font-size: 140%;
+    width: 60px;
+  }
+  
+  
+  /* Icons */
+  
+  .icon-cart:before {
+    content: "\f07a";
+  }
+
+  @media only screen and (max-width: 975px) {
+    .welcome-message-section {
+        margin: 20px 10%;
+    }
+}
+
+  
+
+  @media only screen and (max-width: 715px) {
+    .welcome-message-section {
+        margin: 20px 10px;
+    }
+
+
+  }
+
+  @media only screen and (max-width: 616px) {
+    .card{
+      height: 310px;
+      margin: 15px 10px;
+      flex-basis: 250px;
+  }
+  
+  img{
+      border-radius: 0 0 10px 10px;
+      max-width: 100%;
+      height: 147px;
+  }
+
+}

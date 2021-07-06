@@ -1,0 +1,216 @@
+.login{
+    margin: 0 auto;
+    padding: 0 15%;
+    transition: padding 0.3s ease;
+}
+
+mat-icon{
+    color: rgb(114, 114, 114);
+}
+
+.login-form{
+flex-grow: 1;
+
+}
+
+.current {
+    font-size: 2.3rem;
+    margin: 25px 0;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: bold;
+}
+
+.section{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    padding: 30px;
+    box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%);
+    border-radius: 10px;
+}
+
+.input{
+    display: block;
+    margin-bottom: 10px;
+}
+mat-label{
+    font-family: 'Open Sans', 'sans-serif';
+}
+
+input{
+    font-family: 'Poppins', sans-serif;
+}
+
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.signup-link{
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.signup-link p,a{
+    font-size: 0.95rem;
+    font-family: 'Open Sans', sans-serif;
+    padding-right: 7px;
+}
+
+.signup-link a{
+    font-weight: 700;
+    color: black;
+    text-decoration: none;
+}
+
+.login-button{
+    padding: 17px 25px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.login-button:hover {
+    background-color: #ececec;
+}
+
+.login-button:active {
+    background-color: #dfdfdf;
+}
+
+.cards{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 50px;
+    flex-basis: 50%;
+}
+
+.card{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: white;
+    height: 170px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    text-align: center;
+    border: 1px rgb(210, 210, 210) solid;
+    box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%);
+}
+
+.right p, h3{
+    font-family: 'Open Sans', 'sans-serif';
+    padding: 0 10px;
+}
+
+img{
+    border-radius: 10px 0 0 10px;
+    max-width: 240px;
+    height: 170px;
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 100%;
+}
+
+
+h3{
+    padding-bottom: 20px;   
+    text-align: center;
+}
+
+.oauth-buttons{
+    display: flex;
+    justify-content: center;
+}
+
+.google-btn{
+    padding-right: 40px;
+}
+
+h2 {
+    overflow: hidden;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    padding: 25px 0;
+    color: rgb(21, 43, 112);
+    font-weight: 400;
+  }
+  
+  h2:before,
+  h2:after {
+    background-color: rgba(146, 158, 190, 0.384);
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+  
+  h2:before {
+    right: 0.9em;
+    margin-left: -50%;
+  }
+  
+  h2:after {
+    left: 0.9em;
+    margin-right: -50%;
+  }
+
+@media only screen and (max-width: 1360px) {
+    .cards{
+        padding-left: 20px;
+    }
+}
+
+
+@media only screen and (max-width: 1260px) {
+    .cards{
+        flex-basis: 100%;
+        padding: 35px 0 0;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+
+    .login{
+            padding: 0 5%;
+
+    }
+    img{
+        border-radius: 10px 0 0 10px;
+        max-width: 180px;
+        height: 140px;
+    }
+
+    .card{
+        height: 140px;
+    }
+
+    .right h3{
+        font-size: 1.05rem;
+    }
+    .right p{
+        font-size: 0.9rem;
+    }
+}
+
+@media only screen and (max-width: 534px) {
+    .oauth-buttons{
+        flex-direction: column;
+        align-items: center;
+    }
+    .google-btn{
+        padding: 0 0 20px;
+    }
+}

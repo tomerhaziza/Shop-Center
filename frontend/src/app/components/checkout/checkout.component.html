@@ -1,0 +1,133 @@
+<div class="checkout">
+    <div class="current">
+        Checkout
+    </div>
+    <form #checkoutForm="ngForm">
+        <div class="address section">
+            <div class="title">
+                <div>
+                    Delivery
+                </div>
+                <div>
+                    Address
+                </div>
+            </div>
+            <div class="inputs">
+                <mat-form-field class="input" appearance="outline" *ngIf='stateService.userDetails'>
+                    <mat-label>Full name</mat-label>
+                    <input matInput
+                        [value]="stateService.userDetails.firstName + ' ' + stateService.userDetails.lastName" disabled>
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="input" appearance="outline">
+                    <mat-label>City</mat-label>
+                    <mat-select [(ngModel)]="newOrderDetails.city" name="city"
+                        [disabled]='!stateService.shoppingCart.cartItems.length' required>
+                        <mat-option *ngFor="let city of cities" value={{city}}>
+                            {{city}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>apartment</mat-icon>
+                    <mat-error align='end'>*required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="input" appearance="outline">
+                    <mat-label>Street</mat-label>
+                    <input matInput #streetInput="ngModel" name="street" [(ngModel)]="newOrderDetails.street"
+                        (dblclick)='
+                        newOrderDetails.street = stateService.userDetails.street'
+                        [disabled]='!stateService.shoppingCart.cartItems.length' required>
+                    <mat-icon matSuffix>home</mat-icon>
+                    <mat-hint *ngIf='stateService.userDetails.street'>Double click for your default street</mat-hint>
+                    <mat-error align='end'>*required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="delivery-date section">
+            <div class="title">
+                <div>
+                    Delivery
+                </div>
+                <div>
+                    Details
+                </div>
+            </div>
+            <div class="inputs">
+                <mat-form-field class="input" hintLabel='If date is grayed, choose another date, we are too busy'
+                    appearance="outline">
+                    <mat-label>Delivery date</mat-label>
+                    <input matInput #deliveryDateInput="ngModel" [matDatepickerFilter]="busyDaysFilter"
+                        [matDatepicker]="picker" name="shippingDate" [(ngModel)]="newOrderDetails.deliveryDate"
+                        min={{today}} [disabled]='!stateService.shoppingCart.cartItems.length' required>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-error align='end' *ngIf='!newOrderDetails.deliveryDate'>*required</mat-error>
+                </mat-form-field>
+
+                <div class="choosen-date" *ngIf='newOrderDetails.deliveryDate && !deliveryDateInput.invalid'>
+                    <div class="delivery-date-details">
+                        <p>
+                            Your order will be delivered on
+                        </p>
+                        <p class="date-format">
+                            {{moment(newOrderDetails.deliveryDate)}}
+                        </p>
+                    </div>
+                    <mat-icon class="schedule-icon" matSuffix>schedule</mat-icon>
+                </div>
+
+                <div class="choosen-date invalid" *ngIf='newOrderDetails.deliveryDate && deliveryDateInput.invalid'>
+                    <div class="delivery-date-details">
+                        <p>
+                            Your order can't be supplied on the selected date, please choose another date.
+                        </p>
+                    </div>
+                    <mat-icon class="schedule-icon invalid-icon" matSuffix>schedule</mat-icon>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="section payment">
+            <div class="top">
+                <div class="title">
+                    <div>
+                        Payment
+                    </div>
+                </div>
+
+                <div class="inputs">
+                    <p class="total-price">
+                        Total Price: ₪ {{stateService.shoppingCart.totalPrice}}
+                    </p>
+                    <mat-form-field class="input" hintLabel='Enter last 4 digits' appearance="outline">
+                        <mat-label>Credit card</mat-label>
+                        <input matInput #cardInput="ngModel" name="creditCard"
+                            [(ngModel)]="newOrderDetails.creditCardNumber" minlength='4' maxlength='4'
+                            [disabled]='!stateService.shoppingCart.cartItems.length' required pattern="^[0-9]*">
+                        <mat-icon matSuffix>credit_card</mat-icon>
+                        <mat-error align='end' *ngIf='!newOrderDetails.creditCardNumber'>*required</mat-error>
+                        <mat-error *ngIf='cardInput.touched && cardInput.invalid && +newOrderDetails.creditCardNumber'>
+                            Enter at least 4 digits</mat-error>
+                        <mat-error *ngIf='!+newOrderDetails.creditCardNumber && newOrderDetails.creditCardNumber'>Only
+                            numbers are allowed!</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="complete-button">
+                <button class="checkout-button"
+                    [disabled]="!stateService.shoppingCart.cartItems.length || checkoutForm.form.invalid"
+                    (click)='onOrder()'>Place Order</button>
+                <button class="checkout-button" routerLink='/categories'>Back</button>
+            </div>
+        </div>
+
+
+    </form>
+
+
+</div>

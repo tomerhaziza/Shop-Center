@@ -1,0 +1,77 @@
+.search-product {
+    display: flex;
+    border-radius: 6px;
+    box-shadow: 1px 1px 3px 0 rgb(0 0 0 / 10%);
+}
+
+input{
+    background-color: rgb(255, 255, 255);
+    padding: 3px 3.5% 0;
+    border-radius: 6px 0 0 6px;
+    border: rgb(34,132,178) 1px solid;
+    border-right: none;
+    flex-grow: 1;
+    font-size: 0.9rem;
+    -webkit-transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    flex-basis: 100%;
+}
+
+input:focus {
+    background-color: #caf0ff0e;
+}
+
+button{
+    background-color: rgb(34,132,178);
+    padding: 11px 12px 7px;
+    border-radius: 0 6px 6px 0;
+    border: none;
+    outline: none;
+    -webkit-transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease;
+    color: rgb(255, 255, 255);
+}
+
+button:hover{
+    background-color: rgba(27, 144, 199, 0.842);
+    cursor: pointer;
+}
+
+button:active {
+    background-color: rgba(27, 144, 199, 0.71);
+}
+
+@media only screen and (max-width: 950px) {
+    input{
+        border-right: none;
+    }
+
+    button{
+        background-color: rgb(233, 232, 232);
+        border: rgb(34,132,178) 1px solid;
+        border-left: none;
+        color: rgb(34,132,178);
+        padding: 11px 8px 7px;
+    }
+
+    button:hover{
+        background-color: rgb(218, 218, 218);
+    }
+
+    button:active {
+        background-color: rgb(206, 206, 206);
+    }
+
+    input:focus {
+        background-color: rgb(255, 255, 255);
+    }
+}
+
+@media only screen and (max-width: 405px) {
+    input{
+        font-size: 0.8rem;
+        min-width: 100px !important;
+    }
+}
