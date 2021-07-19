@@ -5,6 +5,7 @@ const path = require('path')
 const apiController = require('./controllers/api-controller')
 const errorHandler = require("./errors/error-handler");
 const loginFilter = require('./middleware/login-filter');
+require('dotenv').config()
 
 
 server.use('/uploads', express.static(__dirname  + '/uploads')); // Make uploads folder public
