@@ -15,7 +15,7 @@
 html, body { 
     height: 100%;
     background-color: rgb(252, 252, 252);
-    background: url('http://localhost:3000/uploads/app-images/background-tile.png');
+    background: url('/uploads/app-images/background-tile.png');
 }
 body { font-family: Roboto, "Helvetica Neue", sans-serif; }
 .unselectable {
