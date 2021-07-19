@@ -11,6 +11,7 @@ function getUserId(authHeader) {
     return decodedJwt.userId;
 }
 
+// For google oAuth
 async function verify(token) {
     const ticket = await client.verifyIdToken({
         idToken: token,

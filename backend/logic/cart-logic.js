@@ -5,28 +5,32 @@ async function createNewCart(userId) {
     return await cartDao.createNewCart(userId);
 }
 
+async function getCartItemsById(userId, cartId) {
+    let cartItems = await cartDao.getCartItemsById(userId, cartId);
+
+    // Calc total price
+    let totalPrice = 0;
+
+    for (let item of cartItems) {
+        totalPrice += item.totalPrice;
+    }
+
+    return {
+        id: cartId,
+        cartItems: cartItems,
+        totalPrice: totalPrice
+    };
+}
+
 // Get user's last cart items
 async function getLastCartItems(userId) {
-    let lastCartId = await cartDao.getLastCartId(userId);
+    let lastCartId = await cartDao.getLastCartId(userId); // check if user has an opened cart
 
-    if (lastCartId) { // if user has last cart
-        let cartItems = await cartDao.getLastCartItems(lastCartId);
-
-        // Calc total price
-        let totalPrice = 0;
-
-        for (let item of cartItems) {
-            totalPrice += item.totalPrice;
-        }
-
-        return {
-            id: lastCartId,
-            cartItems: cartItems,
-            totalPrice: totalPrice
-        };
+    if (lastCartId) { // if user has an opened cart
+        return getCartItemsById(userId, lastCartId);
     }
-    // If user doesn't have a cart,
-    await cartDao.createNewCart(userId); // Create a new cart for the user
+    // If user doesn't have a cart, create a new cart for the user (first login)
+    await cartDao.createNewCart(userId);
 
     return getLastCartItems(userId);
 }
@@ -83,5 +87,6 @@ module.exports = {
     isProductInCart,
     addProductToCart,
     removeProductFromCart,
-    updateProductAmountInCart
+    updateProductAmountInCart,
+    getCartItemsById
 }

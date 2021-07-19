@@ -49,7 +49,7 @@ export class StateService {
   constructor(private router: Router, private authService: SocialAuthService) {
     this.userAuth = new UserAuthObject(false, false);
     this.shoppingCart = new Cart(undefined, [], undefined);
-    this.userRegisterDetails = new UserRegisterDetails(null, '', '', '', '', '', '', '');
+    this.userRegisterDetails = new UserRegisterDetails(null, '', '', '', '', '', '');
     this.isInAddProduct = false;
     this.isInChangeProduct = false;
     this.productToEdit = new ProductToEditDetails(null, '', null, '', 3);

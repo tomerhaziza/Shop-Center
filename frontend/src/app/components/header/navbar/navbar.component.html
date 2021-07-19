@@ -2,7 +2,7 @@
 
     <div class="user-details unselectable" *ngIf='this.stateService.userDetails && userAuth.isLoggedIn' (click)='openUserMenu()'>
         <div [className]="dropdownOpen ? 'user user-open' : 'user'">
-            <mat-icon Suffix>account_circle</mat-icon>
+            <mat-icon>account_circle</mat-icon>
             <p>
                 {{this.stateService.userDetails.firstName}}
             </p>
@@ -11,9 +11,9 @@
             </p>
         </div>
         <div [className]="dropdownOpen ? 'dropdown-content dropdown-content-open' : 'dropdown-content'">
-            <!-- <p>my account</p>
-            <p>previous orders</p> -->
-            <p (click)='onLogout()'>logout</p>
+            <a routerLink='/account' *ngIf='!stateService.userAuth.isAdmin'>my account</a>
+            <a routerLink='/account/orders' *ngIf='!stateService.userAuth.isAdmin'>previous orders</a>
+            <a (click)='stateService.forceLogout()'>logout</a>
         </div>
     </div>
 </div>

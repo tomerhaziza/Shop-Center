@@ -13,7 +13,6 @@ import {Title} from "@angular/platform-browser";
 })
 export class ProductsComponent implements OnInit {
 
-
   public searchQuery: string;
   public productsList: Product[];
   public categoryId: number;

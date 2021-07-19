@@ -5,6 +5,5 @@ export class ProductToEditDetails{
         public price: number,
         public imageUrl: string,
         public categoryId: number,
-
     ){}
 }

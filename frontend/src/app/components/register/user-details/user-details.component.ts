@@ -18,8 +18,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   public onNext(formData) {
-    if (this.userRegisterDetails.password !== this.userRegisterDetails.confirmPassword ||
-      !+this.userRegisterDetails.id) {
+    if (this.userRegisterDetails.password !== this.userRegisterDetails.confirmPassword) {
       return;
     }
     this.isExist(formData, 'next');

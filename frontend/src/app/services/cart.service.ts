@@ -32,4 +32,8 @@ export class CartService {
     return this.http.delete<void>(`http://${environment.apiUrl}/api/cart/empty`);
   }
 
+  public getCartById(cartId) : Observable<Cart>{
+    return this.http.get<Cart>(`http://${environment.apiUrl}/api/cart/${cartId}`);
+  }
+
 }

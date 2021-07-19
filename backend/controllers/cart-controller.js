@@ -67,4 +67,17 @@ router.delete("/remove-product/:id", async (req, res, next) => {
     }
 });
 
+// Get last shopping cart (items)
+router.get("/:id", async (req, res, next) => {
+    let userId = userDataService.getUserId(req.headers.authorization);
+    let cartId = req.params.id;
+    try {
+        let shoppingCart = await cartLogic.getCartItemsById(userId, cartId);
+        res.json(shoppingCart);
+    } catch (error) {
+        console.log(error);
+        return next(error);
+    }
+});
+
 module.exports = router;

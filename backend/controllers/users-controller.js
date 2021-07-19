@@ -52,6 +52,20 @@ router.post("/user-exists", async (req, res, next) => {
     }
 })
 
+// New user register
+router.put("/update", async (req, res, next) => {
+    let userId = userDataService.getUserId(req.headers.authorization);
+    let user = req.body;
+    user.id = userId;
+    try {
+        let successfulUpdateResponse = await usersLogic.updateUserDetails(user);
+        res.json(successfulUpdateResponse);
+    } catch (error) {
+        console.log(error);
+        return next(error);
+    }
+})
+
 // Get user details by token
 router.get("/me", async (req, res, next) => {
     try {

@@ -31,14 +31,14 @@ async function getLastCartId(userId) {
     }
 }
 
-// Get last cart
-async function getLastCartItems(lastCartId) {
+// Get last cart items
+async function getCartItemsById(userId, cartId) {
     let sql =  `SELECT product_id as id, name, price, amount, total_price as totalPrice, image_url as imageUrl
                 FROM ((cart_items
                 INNER JOIN cart ON cart_items.cart_id = cart.id)
                 INNER JOIN products ON cart_items.product_id = products.id)
-                WHERE cart_id = ?`;
-    const parameters = [ lastCartId ];
+                WHERE cart_id = ? AND user_id = ?`;
+    const parameters = [ cartId, userId ];
 
     try {
         return await connection.executeWithParameters(sql, parameters);
@@ -116,7 +116,7 @@ async function removeProductFromCart(productId, cartId) {
 module.exports = {
     createNewCart,
     getLastCartId,
-    getLastCartItems,
+    getCartItemsById,
     emptyShoppingCart,
     isProductInCart,
     addProductToCart,

@@ -24,7 +24,7 @@ export class CheckoutComponent implements OnInit {
   constructor( private ordersService: OrdersService, public stateService: StateService,
                private router: Router, private matDialog: MatDialog,
                private titleService:Title ) {
-    this.newOrderDetails = new NewOrderDetails('', '', null, null, null, null);
+    this.newOrderDetails = new NewOrderDetails('', '', null, null, null, null, null);
     this.today = new Date().toISOString().split('T')[0];
     this.titleService.setTitle("Checkout - Shop Center");
   }
@@ -44,6 +44,7 @@ export class CheckoutComponent implements OnInit {
 
     this.newOrderDetails.totalPrice = this.stateService.shoppingCart.totalPrice;
     this.newOrderDetails.cartId = this.stateService.shoppingCart.id;
+    this.newOrderDetails.cartItemsQty = this.stateService.shoppingCart.cartItems.length;
     let shoppingCart: Cart = this.stateService.shoppingCart;
 
     this.ordersService.completeCheckout(this.newOrderDetails)

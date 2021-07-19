@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     height: 100px;
-    padding: 0 15px;
+    padding: 0 5px 0 7px;
 }
 
 .item:hover{
@@ -17,7 +17,6 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding-right: 3%;
 }
 
 .amount-buttons p {
@@ -59,7 +58,7 @@ img {
 
 .product-name{
     font-family: 'Open Sans', sans-serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
     display: inline;
 }
 .item-details p {
@@ -68,8 +67,8 @@ img {
 }
 
 .total-price{
-    flex-basis: 25%;
-    font-size: 0.96rem;
+    min-width: 44px;
+    font-size: 0.9rem;
     text-align: center;
 }
 

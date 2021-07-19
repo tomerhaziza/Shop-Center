@@ -27,7 +27,7 @@ export class PersonalDetailsComponent implements OnInit {
     this.usersService.register(this.userRegisterDetails)
       .subscribe(successfulServerResponse => {
         this.login();
-        this.stateService.userRegisterDetails = new UserRegisterDetails(null, '', '', '', '', '', '', '');
+        this.stateService.userRegisterDetails = new UserRegisterDetails(null, '', '', '', '', '', '');
       }, error => {
         console.error(error);
       });
@@ -50,11 +50,10 @@ export class PersonalDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     // If data from step 1 are missing, return to step 1
-    if (this.userRegisterDetails.id == null ||
-      this.userRegisterDetails.email.trim() == '' ||
-      this.userRegisterDetails.password.trim() == '' ||
-      this.userRegisterDetails.confirmPassword.trim() == '') {
-      this.router.navigate(['register']);
+    if (this.userRegisterDetails.email.trim() == '' ||
+        this.userRegisterDetails.password.trim() == '' ||
+        this.userRegisterDetails.confirmPassword.trim() == '') {
+        this.router.navigate(['register']);
     }
   }
 

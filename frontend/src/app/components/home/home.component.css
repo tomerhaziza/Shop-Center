@@ -1,21 +1,24 @@
-.cards{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 40px 0;
-    justify-content: center;
-    background-color: rgb(252, 252, 252);
-    box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%);
-}
-
 .message{
     padding-bottom: 30px;
 }
 
+.cards{
+  background-color: rgb(252, 252, 252);
+  box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%);
+}
+
+.cards-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px 0; 
+}
+
 .card{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    background-color: white;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: white;
     height: 370px;
     border-radius: 10px;
     margin: 20px;
@@ -43,40 +46,9 @@ img{
     height: 147px;
 }
 
-.welcome-message-section{
-    font-family: 'Ubuntu Condensed', sans-serif;
-    margin: 20px 20%;
-    background-color: white;
-    padding: 40px;
-    box-shadow: 0 0 15px 0 rgb(0 0 0 / 7%);
-    text-shadow: 1px 1px 2px #000;
-    color: white;
-    border-radius: 8px;
-    transition: margin 0.3s ease;
-}
-
-.welcome-title{
-    font-family: 'Ubuntu Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 3rem;
-}
-
-.welcome-messages-wrap{
-    margin: 0 auto;
-    text-align: center;
-    padding: 80px 10px;
-    border-radius: 7px;
-}
-
-
-.welcome-message{
-    font-family: 'Open Sans';
-    font-size: 2.2rem;
-    font-weight: 700;
-}
-
 .shop-button{
-    text-align: right;
+    text-align: center;
+    padding-bottom: 60px;
 }
 
 h2{
@@ -181,22 +153,6 @@ h2{
     content: "\f07a";
   }
 
-  @media only screen and (max-width: 975px) {
-    .welcome-message-section {
-        margin: 20px 10%;
-    }
-}
-
-  
-
-  @media only screen and (max-width: 715px) {
-    .welcome-message-section {
-        margin: 20px 10px;
-    }
-
-
-  }
-
   @media only screen and (max-width: 616px) {
     .card{
       height: 310px;
@@ -208,6 +164,11 @@ h2{
       border-radius: 0 0 10px 10px;
       max-width: 100%;
       height: 147px;
+  }
+
+  .message h2{
+    font-size: 1.9rem;
+    word-wrap:break-word;
   }
 
 }

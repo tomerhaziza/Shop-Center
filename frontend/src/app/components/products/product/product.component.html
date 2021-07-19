@@ -18,6 +18,7 @@
                     [(ngModel)]='amount' min="1">
                 <button (click)='onIncreaseAmount()'>+</button>
             </div>
+            
             <button [className]='buttonText != "Add to cart" && buttonText != "Adding..." ? "add-button added" : "add-button"' (click)="onAddToCart()">
                 <div class="add-button-txt" [@buttonTextStateTrigger]="buttonTextState"
                     (@buttonTextStateTrigger.done)="buttonTextTransitioned($event)">

@@ -1,11 +1,32 @@
 .footer {
-  margin-top: 50px;
-  padding: 65px;
-  text-align: center;
-  background-color: rgb(240, 240, 240);
+  margin-top: 30px;
+  padding: 10px ;
+  background-color: rgb(241, 241, 241);
+  display: flex;
+  align-items: center;
 }
   
+.social-icons{
+  flex-basis: 33%;
+}
+
+
+.center{
+  text-align: center;
+  flex-basis: 34%;
+}
+
 p{
   font-family: 'Open Sans', sans-serif;
-  font-size: 1.05rem;
+  font-size: 0.9rem;
+}
+
+p:nth-of-type(2){
+  font-size: 0.8rem;
+}
+
+.social-icons img{
+  width: 40px;
+  height: 40px;
+  margin: 10px 5px;
 }

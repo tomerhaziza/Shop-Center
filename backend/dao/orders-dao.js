@@ -5,11 +5,11 @@ const ErrorType = require('../errors/error-type');
 // Add order to DB
 async function completeCheckout(userId, orderData) {
     const sql = `INSERT INTO orders
-                 (user_id, cart_id, total_price, city, street, delivery_date, order_date, credit_card)
-                  values(?, ?, ?, ?, ?, ?, ?, ?)`;
+                 (user_id, cart_id, total_price, city, street, delivery_date, order_date, credit_card, cart_items_qty)
+                  values(?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     const parameters = [ userId, orderData.cartId, orderData.totalPrice, orderData.city,
                          orderData.street, new Date(orderData.deliveryDate), new Date(),
-                         orderData.creditCardNumber];
+                         orderData.creditCardNumber, orderData.cartItemsQty];
     try {
         return await connection.executeWithParameters(sql, parameters);
     }
@@ -35,7 +35,9 @@ async function getOrdersInStoreCount() {
 async function getLastOrder(userId) {
     let sql = `SELECT
                 id, cart_id as cartId, total_price as totalPrice, city, street,
-                delivery_date as deliveryDate, order_date as orderDate, credit_card as creditCard
+                delivery_date as deliveryDate, order_date as orderDate,
+                credit_card as creditCardNumber, cart_items_qty as cartItemsQty
+
                 FROM shopping_online.orders
                 WHERE user_id = ?
                 ORDER BY orderDate DESC limit 1`;
@@ -63,9 +65,30 @@ async function getBusyDays() {
     }
 }
 
+// Get all orders for user
+async function getAllUserOrders(userId, page) {
+    let sql = ` SELECT
+                id, cart_id as cartId, total_price as totalPrice, city, street,
+                delivery_date as deliveryDate, order_date as orderDate,
+                credit_card as creditCardNumber, cart_items_qty as cartItemsQty
+                FROM orders
+                WHERE user_id = ?
+                ORDER BY id DESC
+                LIMIT ?, 11 `;
+                const parameters = [userId, page];
+    try {
+        return await connection.executeWithParameters(sql, parameters);
+    }
+    catch (e) {
+        console.error(e);
+        throw new ServerError(ErrorType.GENERAL_ERROR);
+    }
+}
+
 module.exports = {
     completeCheckout,
     getOrdersInStoreCount,
     getLastOrder,
-    getBusyDays
+    getBusyDays,
+    getAllUserOrders
 }

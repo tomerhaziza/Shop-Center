@@ -28,4 +28,8 @@ export class OrdersService {
     return this.http.get<any>(`http://${environment.apiUrl}/api/orders/busy`);
   }
 
+  public getAllUserOrders(page): Observable<Order[]>{
+    return this.http.get<Order[]>(`http://${environment.apiUrl}/api/orders/all?page=${page}`);
+  }
+
 }

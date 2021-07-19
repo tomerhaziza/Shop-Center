@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   constructor( private productsService: ProductsService, private ordersService: OrdersService,
                public stateService: StateService, private router : Router,
                private titleService:Title ) {
-               this.lastOrder = new Order(null, null, null, '', '', null, null, null)
+               this.lastOrder = new Order(null, null, null, '', '', null, null, null, null)
                this.titleService.setTitle("Shop Center");;
               }
 

@@ -50,6 +50,12 @@ import {
 import { OauthRegisterComponent } from '../components/register/oauth-register/oauth-register.component';
 import { CoolSocialLoginButtonsModule } from '@angular-cool/social-login-buttons';
 import { LoaderComponent } from '../components/loader/loader.component';
+import { MyAccountComponent } from '../components/user-panel/my-account/my-account.component';
+import { PreviousOrdersComponent } from '../components/user-panel/previous-orders/previous-orders.component';
+import { OrderCardComponent } from '../components/user-panel/previous-orders/order-card/order-card.component';
+import { UserPanelComponent } from '../components/user-panel/user-panel.component';
+import { OrderCartDialogComponent } from '../components/user-panel/previous-orders/order-cart-dialog/order-cart-dialog.component';
+import { OrderCartItemComponent } from '../components/user-panel/previous-orders/order-cart-dialog/order-cart-item/order-cart-item.component';
 
 
 
@@ -87,6 +93,12 @@ const matImports =
     CheckoutCompleteDialogComponent,
     OauthRegisterComponent,
     LoaderComponent,
+    MyAccountComponent,
+    PreviousOrdersComponent,
+    OrderCardComponent,
+    UserPanelComponent,
+    OrderCartDialogComponent,
+    OrderCartItemComponent,
   ],
   imports: [
     BrowserModule,

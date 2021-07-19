@@ -55,5 +55,20 @@ router.get("/busy", async (req, res, next) => {
     }
 });
 
+// Get last order for user
+router.get("/all", async (req, res, next) => {
+    let userId = userDataService.getUserId(req.headers.authorization);
+    let page = req.query.page;
+
+    try {
+        let lastOrder = await ordersLogic.getAllUserOrders(userId, page);
+        res.json(lastOrder);
+    }
+    catch (error) {
+        console.log(error);
+        return next(error);
+    }
+});
+
 
 module.exports = router;

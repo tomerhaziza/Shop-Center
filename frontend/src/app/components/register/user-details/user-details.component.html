@@ -3,18 +3,6 @@
         Step 1: User Details
     </div>
     <form #stepOne="ngForm" (ngSubmit)='onNext(stepOne)' novalidate>
-        <mat-form-field class="input" hintLabel='Enter numbers only' appearance="outline">
-            <mat-label>ID Number</mat-label>
-            <input #idInput="ngModel" matInput type="number" name="id" [(ngModel)]="userRegisterDetails.id" (blur)='isExist(stepOne)'
-                required maxlength="9"
-                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" >
-            <mat-icon matSuffix>badge</mat-icon>
-            <mat-error align='end' *ngIf='!userRegisterDetails.id'>*required</mat-error>
-            <mat-error *ngIf='idInput.errors?.userExist'>
-                ID already exists!
-            </mat-error>
-        </mat-form-field>
-
         <mat-form-field class="input" hintLabel='Example: your@email.com' appearance="outline">
             <mat-label>Email Address</mat-label>
             <input #emailInput="ngModel" matInput name="email" required email [(ngModel)]="userRegisterDetails.email"

@@ -9,6 +9,9 @@ import { HomeComponent } from '../components/home/home.component';
 import { LoginGuard } from '../guards/login.guard';
 import { PageNotFoundComponent } from '../components/page-not-found/page-not-found.component';
 import { RegisterComponent } from '../components/register/register.component';
+import { MyAccountComponent } from '../components/user-panel/my-account/my-account.component';
+import { PreviousOrdersComponent } from '../components/user-panel/previous-orders/previous-orders.component';
+import { UserPanelComponent } from '../components/user-panel/user-panel.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, canActivate: [LoginGuard] },
@@ -21,6 +24,10 @@ const routes: Routes = [
   { path: "categories", redirectTo: "categories/1", pathMatch: "full" },
   { path: "products/search", component: ProductsComponent, canActivate: [LoginGuard] },
   { path: "checkout", component: CheckoutComponent, canActivate: [LoginGuard] },
+  { path: "account", component: UserPanelComponent, children: [
+    { path: "", component: MyAccountComponent, canActivate: [LoginGuard]},
+    { path: "orders", component: PreviousOrdersComponent, canActivate: [LoginGuard] },
+  ] },
   { path: "**", component: PageNotFoundComponent, canActivate: [LoginGuard] }
 ];
 @NgModule({

@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnDestroy(){
-    this.stateService.userRegisterDetails = new UserRegisterDetails(null, '', '', '','', '', '', '');
+    this.stateService.userRegisterDetails = new UserRegisterDetails(null, '', '', '','', '', '');
   }
 
 }

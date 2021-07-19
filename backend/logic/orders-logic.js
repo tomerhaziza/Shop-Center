@@ -32,9 +32,21 @@ async function getBusyDays(){
     return await ordersDao.getBusyDays();
 }
 
+// Get all user orders
+async function getAllUserOrders(userId, page){
+    if (page > 1){
+        page = page*10 - 10
+    }
+    else{
+        page = 0;
+    }
+    return await ordersDao.getAllUserOrders(userId, page);
+}
+
 module.exports = {
     completeCheckout,
     getOrdersInStoreCount,
     getLastOrder,
-    getBusyDays
+    getBusyDays,
+    getAllUserOrders
 }

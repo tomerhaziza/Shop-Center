@@ -5,6 +5,7 @@ export class NewOrderDetails{
         public deliveryDate: Date,
         public creditCardNumber: number,
         public totalPrice: number,
-        public cartId: number
+        public cartId: number,
+        public cartItemsQty: number
     ){}
 }

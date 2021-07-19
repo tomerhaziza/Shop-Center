@@ -38,10 +38,6 @@ export class NavbarComponent implements OnInit {
       this.dropdownOpen = false;
   }
 
-  public onLogout() {
-    this.stateService.forceLogout();
-  }
-
   ngOnInit(): void {
   }
 

@@ -36,5 +36,9 @@ export class UsersService {
   public isUserAlreadyExist(userRegisterDetails : UserRegisterDetails): Observable<boolean>{    
     return this.http.post<boolean>(`http://${environment.apiUrl}/api/users/user-exists`, userRegisterDetails);
   }
+  
+  public updateUserDetails(userDetails : UserRegisterDetails): Observable<void>{
+    return this.http.put<void>(`http://${environment.apiUrl}/api/users/update`, userDetails);
+  }
 
 }

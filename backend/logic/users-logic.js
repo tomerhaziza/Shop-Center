@@ -39,13 +39,13 @@ async function googleLogin(user) {
 
     else{ // If user isn't registered, create a new account with his oauth data
         let newUser = {
-            id: user.sub,
             email: user.email,
             password: 'google-password',
             firstName: user.given_name,
             lastName: user.family_name,
             city: null,
-            street: null
+            street: null,
+            oAuth: user.sub
         }
         try{
             await this.addUser(newUser);
@@ -73,7 +73,7 @@ async function loginRegisteredGoogleUser(email){
 // New user register
 async function addUser(user) {
     // Validations
-    if ( user.id == null || user.email.trim() == '' || user.password.trim() == '' ||
+    if ( user.email.trim() == '' || user.password.trim() == '' ||
          user.firstName.trim() == '' || user.lastName.trim() == '' ) {
         throw new ServerError(ErrorType.MISSING_PARAMETERS);
     }
@@ -90,20 +90,26 @@ async function getUserDetails(userId) {
 
 // Check if user already exist
 async function isUserAlreadyExist(userDetails) {
-    let idExist = await usersDao.isUserExistById(userDetails.id);
     let emailExist = await usersDao.isUserExistByEmail(userDetails.email);
-    if (idExist && emailExist){
-        throw new ServerError(ErrorType.USER_ALREADY_EXIST);
-    }
-    
-    if (idExist) {
-        throw new ServerError(ErrorType.USER_ID_ALREADY_EXIST);
-    }
     
     if (emailExist) {
         throw new ServerError(ErrorType.USER_EMAIL_ALREADY_EXIST);
     }
     return false;
+}
+
+// Update User Details
+async function updateUserDetails(user) {
+    // Validations
+    if ( user.firstName.trim() == '' || user.lastName.trim() == '' ) {
+        throw new ServerError(ErrorType.MISSING_PARAMETERS);
+    }
+    // Hash user new password
+    if (user.password.trim()){
+        user.password = crypto.createHash("md5").update(config.saltLeft + user.password + config.saltRight).digest("hex");
+    }
+
+    return await usersDao.updateUserDetails(user);
 }
 
 
@@ -113,5 +119,6 @@ module.exports = {
     googleLogin,
     loginRegisteredGoogleUser,
     getUserDetails,
-    isUserAlreadyExist
+    isUserAlreadyExist,
+    updateUserDetails
 };

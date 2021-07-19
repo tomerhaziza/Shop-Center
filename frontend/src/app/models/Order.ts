@@ -7,6 +7,7 @@ export class Order {
         public street: string,
         public deliveryDate: Date,
         public orderDate: Date,
-        public creditCardNumber: number
+        public creditCardNumber: number,
+        public cartItemsQty: number
     ) { }
 }
