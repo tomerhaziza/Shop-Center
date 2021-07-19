@@ -1,0 +1,49 @@
+.orders{
+    padding: 0 15% 0 5%;
+}
+
+mat-icon{
+    color: rgb(21, 138, 184);
+    color: white;
+    font-size: 1.6rem;
+    height: auto;
+    width: auto;
+}
+
+.current {
+    font-size: 2.3rem;
+    margin: 15px 0 25px;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: bold;
+}
+
+.pagination{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.navigate-button{
+    background-color: rgb(21, 138, 184);
+    color: white;
+    border: rgb(21, 138, 184) 2px solid;
+    padding: 5px 5px 1px 4px;
+    border-radius: 50%;
+    cursor:pointer;
+}
+
+.navigate-button:hover{
+    background-color: rgb(255, 255, 255);
+    border: rgb(21, 138, 184) 2px solid;
+
+}
+
+.navigate-button:hover mat-icon{
+    color: rgb(21, 138, 184);
+}
+
+@media only screen and (max-width: 1600px) {
+    .orders{
+        padding: 0 3% 0 3%;
+    }
+}

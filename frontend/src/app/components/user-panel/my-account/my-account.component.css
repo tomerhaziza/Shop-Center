@@ -1,0 +1,148 @@
+.account{
+    padding: 0 15% 0 5%;
+}
+
+mat-icon{
+    color: rgb(114, 114, 114);
+}
+
+.current {
+    font-size: 2.3rem;
+    margin: 15px 0 25px;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: bold;
+}
+
+.section{
+    background-color: white;
+    margin: 20px 0;
+    box-shadow: 0 0 15px 0 rgb(0 0 0 / 8%);
+}
+
+.section:nth-of-type(1){
+    border-radius: 10px 10px 0 0;
+}
+
+.section:nth-of-type(3){
+    border-radius: 0 0 10px 10px;
+}
+
+.container{
+    display: flex;
+    padding: 30px;
+}
+
+.title{
+    padding-left: 3%;
+    flex-basis: 25%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title div{
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: 600;
+    color: rgb(63, 63, 63);
+    font-size: 2.3rem;
+}
+
+.inputs{
+    flex-basis: 100%;
+    padding: 0 10px;
+}
+
+
+.input{
+    width: 50%;
+    margin-bottom: 15px;
+    padding: 0 10px;
+}
+
+.save-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(19, 151, 204);
+    height: 100px;
+    border-radius: 0 0 10px 10px;
+}
+
+.save-section button{
+    background-color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 7px;
+    transition: background-color 0.2s ease;
+}
+
+.save-section button:hover{
+    background-color: rgb(243, 243, 243);
+}
+
+.save-section button:active{
+    background-color: rgb(255, 255, 255);
+}
+
+.full-width{
+    margin-right: 50%;
+}
+
+.message{
+    text-align: center;
+    margin-bottom: 20px;
+    height: 25px;
+}
+
+
+.message p{
+    transition: opacity 1s ease;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.15rem;
+}
+
+.hidden{
+    cursor: default;
+    opacity: 0;
+}
+
+.saved{
+    opacity: 1;
+}
+
+@media only screen and (max-width: 1440px) {
+    .account{
+        padding: 0 5%;
+    }
+    .input{
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 812px) {
+    .account{
+        padding: 0 3%;
+    }
+    .container{
+        flex-direction: column;
+        padding: 25px 10px;
+    }
+
+    .title{
+        flex-direction: row;
+    }
+
+    .title div{
+        margin-right: 9px;
+        font-size: 2rem;
+    }
+
+    .inputs{
+        padding-left: 8px;
+        padding-top: 20px;
+    }
+
+    .input{
+        width: 100%;
+        margin: 0;
+    }
+}

@@ -1,0 +1,107 @@
+<div class="account">
+    <div class="current">
+        My Account
+    </div>
+    <form #stepOne="ngForm" (ngSubmit)='onSaveChanges()' novalidate>
+        <div class="section">
+            <div class="container">
+                <div class="title">
+                    <div>
+                        Personal
+                    </div>
+                    <div>
+                        Details
+                    </div>
+                </div>
+
+                <div class="inputs">
+                    
+                    <mat-form-field class="input" appearance="outline" *ngIf='stateService.userDetails'>
+                        <mat-label>First Name</mat-label>
+                        <input matInput [(ngModel)]="userDetails.firstName" name="firstName" required>
+                        <mat-icon matSuffix>person</mat-icon>
+                        <mat-error align='end'>*required</mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field class="input" appearance="outline" *ngIf='stateService.userDetails'>
+                        <mat-label>Last Name</mat-label>
+                        <input matInput [(ngModel)]="userDetails.lastName" name="lastName" required>
+                        <mat-icon matSuffix>person</mat-icon>
+                        <mat-error align='end'>*required</mat-error>
+                    </mat-form-field>
+
+                <mat-form-field class="input" appearance="outline">
+                    <mat-label>City</mat-label>
+                    <mat-select [(ngModel)]="userDetails.city" name="city">
+                        <mat-option *ngFor="let city of cities" value={{city}}>
+                            {{city}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>apartment</mat-icon>
+                </mat-form-field>
+    
+                    <mat-form-field class="input" appearance="outline" *ngIf='stateService.userDetails'>
+                        <mat-label>Address</mat-label>
+                        <input matInput [(ngModel)]="userDetails.street" name="street"
+                            [value]="stateService.userDetails.street">
+                        <mat-icon matSuffix>apartment</mat-icon>
+                    </mat-form-field>
+    
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="container">
+                <div class="title">
+                    <div>
+                        User
+                    </div>
+                    <div>
+                        Details
+                    </div>
+                </div>
+                <div class="inputs">
+    
+                    <mat-form-field class="input full-width" appearance="outline" *ngIf='stateService.userDetails'>
+                        <mat-label>Email</mat-label>
+                        <input matInput name="email"
+                            [value]="stateService.userDetails.email" disabled>
+                        <mat-icon matSuffix>email</mat-icon>
+                    </mat-form-field>
+    
+                    <mat-form-field class="input" appearance="outline">
+                        <mat-label>New password</mat-label>
+                        <input type="password" #passwordInput="ngModel" matInput name="password"
+                            [(ngModel)]="userDetails.password" (input)='passwordsDontMatch(stepOne)'
+                            placeholder="********">
+                        <mat-icon matSuffix>lock</mat-icon>
+                        <mat-error align='end' >*required</mat-error>
+                    </mat-form-field>
+            
+                    <mat-form-field class="input" appearance="outline">
+                        <mat-label>Confirm Password</mat-label>
+                        <input type="password" #confirmPasswordInput="ngModel" matInput name="confirmPassword"
+                            [(ngModel)]="userDetails.confirmPassword" (input)='passwordsDontMatch(stepOne)'
+                            placeholder="********">
+                        <mat-icon matSuffix>lock</mat-icon>
+                        <mat-error align='end' *ngIf='!userDetails.confirmPassword'>*required</mat-error>
+                        <mat-error *ngIf='!confirmPasswordInput.pristine && confirmPasswordInput.errors?.passwordsDontMatch'>
+                            Passwords do not match!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="message">
+                <p [className]='isSavedChanges ? "saved" : "hidden"'>
+                    Changes saved successfuly
+                </p>
+            </div>
+            <div class="save-section">
+                <button [disabled]="stepOne.form.invalid">Save Changes</button>
+            </div>
+
+        </div>
+    </form>
+
+</div>

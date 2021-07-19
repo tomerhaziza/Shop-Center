@@ -1,0 +1,19 @@
+<div class="order-dialog">
+
+    <div class="dialog-header">
+        <h2>
+            Order #{{data.order.id}}
+        </h2>
+        <div class="close-dialog">
+            <i class="fas fa-times close-icon" (click)='matDialog.closeAll()'></i>
+        </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="cart-body">
+        <div *ngFor='let item of data.cart.cartItems' class="flex-item">
+            <app-order-cart-item [item]='item'></app-order-cart-item>
+        </div>
+    </div>
+</div>

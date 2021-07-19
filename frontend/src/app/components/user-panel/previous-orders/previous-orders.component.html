@@ -1,0 +1,24 @@
+<div class="orders">
+    <div class="current">
+        Previous Orders
+    </div>
+
+    <div class="orders-list">
+        <div *ngFor='let order of allOrders'>
+            <app-order-card [order]='order'></app-order-card>
+        </div>
+    </div>
+
+    <div class="pagination">
+        <div class="back">
+            <button *ngIf='page != 1' class="navigate-button" (click)='this.getAllUserOrders("back")'>
+                <mat-icon>navigate_before</mat-icon>
+            </button>
+        </div>
+        <div class="next">
+            <button *ngIf='isNextPage' class="navigate-button" (click)='getAllUserOrders("next")'>
+                <mat-icon>navigate_next</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

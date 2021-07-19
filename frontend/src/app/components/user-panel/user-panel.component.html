@@ -1,0 +1,25 @@
+<div class="user-panel">
+    <nav class="side-nav">
+        <ul>
+            <a routerLink='/account' (click)='activeTab = "account"' [className]="activeTab=='account' ? 'tab active' : 'tab'">
+                <mat-icon Suffix>account_circle</mat-icon>
+                {{stateService.userDetails.firstName}} {{stateService.userDetails.lastName}}
+            </a>
+            <a routerLink='/account/orders' (click)='activeTab = "orders"' [className]="activeTab=='orders' ? 'tab active' : 'tab'">
+                <mat-icon Suffix>history</mat-icon>
+                My Orders
+            </a>
+            <a routerLink='/checkout' class="tab" *ngIf='stateService.shoppingCart.cartItems.length'>
+                <mat-icon Suffix>payment</mat-icon>
+                Checkout
+            </a>
+            <li class="tab" (click)='stateService.forceLogout()'>
+                <mat-icon Suffix>logout</mat-icon>
+                Logout
+            </li>
+        </ul>
+    </nav>
+    <div class="main">
+        <router-outlet></router-outlet>
+    </div>
+</div>

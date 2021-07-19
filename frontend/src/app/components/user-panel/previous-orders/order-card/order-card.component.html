@@ -1,0 +1,59 @@
+<div class="order-card">
+    <div class="title">
+        <div>
+            Order
+        </div>
+        <div>
+            #{{order.id}}
+        </div>
+        <div class="order-date">
+            <mat-icon class="time-icon">schedule</mat-icon>
+            <p>
+                {{moment(order.orderDate, 'order')}}
+            </p>
+        </div>
+    </div>
+
+    <div class="order-details">
+
+        <div class="details-section">
+            <div class="label">
+                <mat-icon class="icon">local_shipping</mat-icon>
+                <p>
+                    To: {{order.street}}, {{order.city}}
+                </p>
+            </div>
+            <div class="label">
+                <mat-icon class="icon">event</mat-icon>
+                <p>
+                    Delivered on {{moment(order.deliveryDate, 'delivery')}}
+                </p>
+            </div>
+        </div>
+
+        <div class="details-section">
+            <div class="label">
+                <mat-icon class="icon">attach_money</mat-icon>
+                <p>
+                    Total: {{order.totalPrice}}₪
+                </p>
+            </div>
+            <div class="label">
+                <mat-icon class="icon">credit_card</mat-icon>
+                <p>
+                    **** **** **** {{order.creditCardNumber}}
+                </p>
+            </div>
+        </div>
+
+        <div class="view-cart" (click)='onGetOrderCart()'>
+            <div>
+                <p>
+                    View Order
+                </p>
+                <i class="fas fa-shopping-basket basket-icon" title='Open Cart'></i>
+            </div>
+            <span class="cart-qty">{{order.cartItemsQty}}</span>
+        </div>
+    </div>
+</div>

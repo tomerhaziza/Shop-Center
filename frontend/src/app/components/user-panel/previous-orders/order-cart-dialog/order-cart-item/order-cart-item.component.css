@@ -1,0 +1,45 @@
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    padding: 0 15px;
+}
+
+.item:hover{
+    border-top: rgba(240,240,240 0.5) 1px solid;
+    border-left: rgb(240,240,240 0.3) 1px solid;
+    border-bottom: rgb(240,240,240 0.3) 1px solid;
+    background-color: rgb(249, 249, 249);
+}
+
+img {
+    width: 70px;
+    max-height: 70px;
+    margin-right: 5%;
+}
+
+
+.item-details{
+    flex-basis: 100%;
+}
+
+.product-name{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    display: inline;
+}
+.item-details p {
+    padding-top: 5px;
+    font-size: 0.8rem;
+}
+
+.amount{
+    padding: 0 10px;
+}
+
+.total-price{
+    flex-basis: 25%;
+    font-size: 0.96rem;
+    text-align: center;
+}

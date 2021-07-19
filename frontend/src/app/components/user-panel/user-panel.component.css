@@ -1,0 +1,60 @@
+.user-panel{
+    display: flex;
+}
+
+.side-nav{
+    flex-basis: 35%;
+    max-width: 300px;
+    margin-top: 15px;
+}
+
+.tab{
+    background-color: rgb(255, 255, 255);
+    margin: 5px 0;
+    padding: 22px 0;
+    border: rgba(194, 194, 194, 0.418) 1px solid;
+    border-radius: 0 10px 10px 0;
+    text-align: center;
+    font-size: 1.4rem;
+    color: rgb(21, 138, 184);
+    cursor: pointer;
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+.tab{
+    color: rgb(21, 138, 184);
+    text-decoration: none;
+    display: flex;
+    padding-left: 25px;
+    align-items: center;
+}
+
+.tab:hover{
+    background-color: rgb(21, 138, 184);
+    color: white;
+}
+
+.active{
+    background-color: rgb(21, 138, 184);
+    cursor: default;
+}
+
+.active{
+    color: white;
+}
+
+.main{
+    flex-basis: 100%;
+}
+
+mat-icon{
+    padding-right: 2.8rem;
+    font-size: 2.1rem;
+    height: unset;
+}
+
+
+@media only screen and (max-width: 950px) {
+    .side-nav{
+        display: none;
+    }
+}

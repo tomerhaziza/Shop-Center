@@ -1,0 +1,39 @@
+.order-dialog{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    min-width: 40vw;
+    min-height: 45vh;
+    overflow: hidden;
+  }
+
+.dialog-header{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+h2{
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
+.close-icon{
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.hr{
+    border-bottom: 1px solid #E6E6E6;
+    margin-bottom: 10px;
+}
+
+.cart-body{
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    max-height: 63vh;
+}
+
