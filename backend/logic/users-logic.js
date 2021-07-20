@@ -2,12 +2,12 @@ const usersDao = require("../dao/users-dao");
 const ServerError = require("../errors/server-error");
 const ErrorType = require("../errors/error-type");
 const crypto = require('crypto');
-const config = require('../config.json');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 // Login
 async function login(user) {
-    user.password = crypto.createHash("md5").update(config.saltLeft + user.password + config.saltRight).digest("hex");
+    user.password = crypto.createHash("md5").update(process.env.JWT_SALT_LEFT + user.password + process.env.JWT_SALT_RIGHT).digest("hex");
     const userLoginData = await usersDao.login(user);
 
     // Check if the userName + password do not match
@@ -20,12 +20,12 @@ async function login(user) {
     }
 
     const payload = {
-        sub: config.saltLeft + userLoginData.id + config.saltRight,
+        sub: process.env.JWT_SALT_LEFT + userLoginData.id + process.env.JWT_SALT_RIGHT,
         userId: userLoginData.id,
         role: userLoginData.role
     }
 
-    const token = jwt.sign(payload, config.secret);
+    const token = jwt.sign(payload, process.env.JWT_SECRET);
     const successfullLoginResponse = { token: token, userDetails: userLoginData };
     return successfullLoginResponse;
 }
@@ -60,12 +60,12 @@ async function loginRegisteredGoogleUser(email){
     let userDetails = await usersDao.getUserDetailsByEmail(email)
     
     const payload = {
-        sub: config.saltLeft + userDetails.id + config.saltRight,
+        sub: process.env.JWT_SALT_LEFT + userDetails.id + process.env.JWT_SALT_RIGHT,
         userId: userDetails.id,
         role: userDetails.role
     }
 
-    const token = jwt.sign(payload, config.secret);
+    const token = jwt.sign(payload, process.env.JWT_SECRET);
     const successfullLoginResponse = { token: token, userDetails: userDetails };
     return successfullLoginResponse;
 }
@@ -78,7 +78,7 @@ async function addUser(user) {
         throw new ServerError(ErrorType.MISSING_PARAMETERS);
     }
     // Hash user password
-    user.password = crypto.createHash("md5").update(config.saltLeft + user.password + config.saltRight).digest("hex");
+    user.password = crypto.createHash("md5").update(process.env.JWT_SALT_LEFT + user.password + process.env.JWT_SALT_RIGHT).digest("hex");
 
     return await usersDao.addUser(user);
 }
@@ -106,7 +106,7 @@ async function updateUserDetails(user) {
     }
     // Hash user new password
     if (user.password.trim()){
-        user.password = crypto.createHash("md5").update(config.saltLeft + user.password + config.saltRight).digest("hex");
+        user.password = crypto.createHash("md5").update(process.env.JWT_SALT_LEFT + user.password + process.env.JWT_SALT_RIGHT).digest("hex");
     }
 
     return await usersDao.updateUserDetails(user);

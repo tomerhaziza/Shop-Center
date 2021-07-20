@@ -1,7 +1,8 @@
 const expressJwt = require('express-jwt');
-const { secret } = require('../config.json');
 const ServerError = require('../errors/server-error');
 const ErrorType = require("../errors/error-type");
+require('dotenv').config();
+const secret = process.env.JWT_SECRET
 
 function authenticateJwtRequestToken() {
     return [expressJwt({ secret, algorithms: ['HS256'] }).unless({
