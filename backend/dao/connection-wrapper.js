@@ -1,5 +1,6 @@
 const mysql = require("mysql2");
 require('dotenv').config()
+console.log();
 
 // Connection to server DB
 const pool = mysql.createPool({
