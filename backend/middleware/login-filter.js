@@ -12,8 +12,12 @@ function authenticateJwtRequestToken() {
         '/api/users/register', // Register
         '/api/users/user-exists', // Register details validate
         '/api/users/me', // User identification
+        '/api/categories',
+        '/api/orders/count',
         '/api/products/count',
-        '/api/orders/count'
+        '/api/products/popular',
+        { url: /^\/api\/products\/search\/.*/, methods: ['GET'] },
+        { url: /^\/api\/products\/.*/, methods: ['GET'] }
       ]
     }), function(err, req, res, next){
       throw new ServerError(ErrorType.NO_AUTHORIZATION_TOKEN);

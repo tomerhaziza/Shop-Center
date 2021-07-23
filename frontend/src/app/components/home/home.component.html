@@ -1,4 +1,4 @@
-<div class="home" *ngIf='stateService.userDetails'>
+<div class="home">
     <!-- <div class="welcome-message-section" style="background: url('http://{{apiUrl}}/uploads/app-images/text-background-polygonal.jpg');
                 background-size: cover">
         <p class="welcome-title">
@@ -18,6 +18,7 @@
             </p>
         </div>
     </div> -->
+    <button >set cookie</button>
 
     <div class="message">
         <h2>
@@ -49,7 +50,7 @@
                     alt="">
             </div>
 
-            <div class="last-order card" *ngIf='!firstPurchase && !stateService.userAuth.isAdmin'>
+            <div class="last-order card" *ngIf='!firstPurchase && stateService.userAuth.isLoggedIn && !stateService.userAuth.isAdmin'>
                 <div class="top">
                     <h3>Welcome back!</h3>
                     <p>Your last order was on <br>
@@ -60,7 +61,7 @@
             </div>
 
             <div class="open-cart-reminder card"
-                *ngIf='stateService.shoppingCart.cartItems.length && !stateService.userAuth.isAdmin'>
+                *ngIf='stateService.shoppingCart.cartItems.length && stateService.userAuth.isLoggedIn && !stateService.userAuth.isAdmin'>
                 <div class="top">
                     <h3>Continue Shopping</h3>
                     <p>You have an open shopping cart</p>

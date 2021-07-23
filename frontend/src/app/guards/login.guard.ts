@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { UserDetails } from '../models/UserDetails';
 import { StateService } from '../services/state.service';
 import { UsersService } from '../services/users.service';
 
@@ -23,7 +24,7 @@ export class LoginGuard implements CanActivate {
     // If there's token, get user info for application
     if (!this.stateService.userAuth.isLoggedIn) {
       await this.usersService.getUserInfo()
-      .then((userInfoResponse)=>{
+      .then((userInfoResponse: UserDetails)=>{
         this.stateService.userDetails = userInfoResponse;
 
         this.stateService.userAuth.isLoggedIn = true;

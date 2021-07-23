@@ -67,7 +67,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getProductsInStoreCount();
     this.getOrdersInStoreCount();
-    this.getLastOrder();
+    if (this.stateService.userAuth.isLoggedIn){
+      this.getLastOrder();
+    }
   }
 
 }

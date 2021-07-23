@@ -5,14 +5,15 @@ const path = require('path')
 const apiController = require('./controllers/api-controller')
 const errorHandler = require("./errors/error-handler");
 const loginFilter = require('./middleware/login-filter');
+const cookieParser = require('cookie-parser')
 require('dotenv').config()
 
 
 server.use('/uploads', express.static(__dirname  + '/uploads')); // Make uploads folder public
 server.use(express.static('public')); // Make client public
-// server.use(cors({ origin: "http://localhost:4200" })); // For dev only
-server.use(cors());
+server.use(cors({ origin: "http://localhost:4200" })); // For dev only
 server.use(express.json());
+server.use(cookieParser())
 
 // JWT authenticator
 server.use('/api', loginFilter());
@@ -21,7 +22,7 @@ server.use('/api', loginFilter());
 server.use('/api', apiController);
 
 
-// For PWA support
+// For SPA support
 server.all('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'));
 })

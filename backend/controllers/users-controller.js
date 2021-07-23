@@ -8,9 +8,12 @@ const userDataService = require('../services/user-data-service');
 // User login
 router.post("/login", async (req, res, next) => {
     let user = req.body;
+    console.log(req.cookies.token);
     try {
         let successfullLoginData = await usersLogic.login(user);
-        res.json(successfullLoginData);
+        res
+        .cookie("token", successfullLoginData.token, {httpOnly:true})
+        .json(successfullLoginData);
     }
     catch (error) {
         return next(error);
@@ -41,7 +44,7 @@ router.post("/register", async (req, res, next) => {
     }
 })
 
-// Check if user already exist
+// Check if user already exist (for register)
 router.post("/user-exists", async (req, res, next) => {
     let userDetails = req.body;
     try {
@@ -52,7 +55,7 @@ router.post("/user-exists", async (req, res, next) => {
     }
 })
 
-// New user register
+// Update user details from user panel
 router.put("/update", async (req, res, next) => {
     let userId = userDataService.getUserId(req.headers.authorization);
     let user = req.body;
