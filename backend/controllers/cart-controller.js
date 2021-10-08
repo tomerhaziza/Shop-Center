@@ -2,11 +2,10 @@ const express = require('express');
 const router = express.Router();
 const cartLogic = require('../logic/cart-logic');
 const cartDao = require('../dao/cart-dao')
-const userDataService = require('../services/user-data-service');
 
 // Get last shopping cart (items)
 router.get("/last", async (req, res, next) => {
-    let userId = userDataService.getUserId(req.headers.authorization);
+    let userId = req.user.sub;
     try {
         let lastShoppingCart = await cartLogic.getLastCartItems(userId);
         res.json(lastShoppingCart);
@@ -18,7 +17,7 @@ router.get("/last", async (req, res, next) => {
 
 // Empty cart
 router.delete("/empty", async (req, res, next) => {
-    let userId = userDataService.getUserId(req.headers.authorization);
+    let userId = req.user.sub;
     try {
         let response = await cartLogic.emptyShoppingCart(userId);
         res.json(response);
@@ -31,6 +30,7 @@ router.delete("/empty", async (req, res, next) => {
 // Add product to cart
 router.post("/add-product", async (req, res, next) => {
     let productData = req.body;
+
     try {
         let successfullResponse = await cartLogic.addProductToCart(productData);
         res.json(successfullResponse);
@@ -54,7 +54,7 @@ router.put("/update-amount", async (req, res, next) => {
 
 // Remove product from cart
 router.delete("/remove-product/:id", async (req, res, next) => {
-    let userId = userDataService.getUserId(req.headers.authorization);
+    let userId = req.user.sub;
     let cartId = await cartDao.getLastCartId(userId);
     let productId = req.params.id;
 
@@ -69,7 +69,7 @@ router.delete("/remove-product/:id", async (req, res, next) => {
 
 // Get last shopping cart (items)
 router.get("/:id", async (req, res, next) => {
-    let userId = userDataService.getUserId(req.headers.authorization);
+    let userId = req.user.sub;
     let cartId = req.params.id;
     try {
         let shoppingCart = await cartLogic.getCartItemsById(userId, cartId);

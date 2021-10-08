@@ -3,17 +3,16 @@ const ServerError = require('../errors/server-error.js');
 const ErrorType = require("../errors/error-type");
 const router = express.Router();
 const usersLogic = require("../logic/users-logic.js");
-const userDataService = require('../services/user-data-service');
+const socialAuth = require('../services/social-auth');
 
 // User login
 router.post("/login", async (req, res, next) => {
     let user = req.body;
-    console.log(req.cookies.token);
     try {
         let successfullLoginData = await usersLogic.login(user);
         res
-        .cookie("token", successfullLoginData.token, {httpOnly:true})
-        .json(successfullLoginData);
+            .cookie("token", successfullLoginData.token, { httpOnly: true, expires: new Date(Date.now() + 86400 * 1000 * 100) })
+            .json(successfullLoginData.userDetails);
     }
     catch (error) {
         return next(error);
@@ -22,10 +21,12 @@ router.post("/login", async (req, res, next) => {
 
 router.post("/google-login", async (req, res, next) => {
     let token = req.body.token;
-    let user = await userDataService.verify(token);
+    let user = await socialAuth.verify(token);
     try {
         let successfullLoginData = await usersLogic.googleLogin(user);
-        res.json(successfullLoginData);
+        res
+            .cookie("token", successfullLoginData.token, { httpOnly: true, expires: new Date(Date.now() + 86400 * 1000 * 100) })
+            .json(successfullLoginData.userDetails);
     }
     catch (error) {
         return next(error);
@@ -57,7 +58,7 @@ router.post("/user-exists", async (req, res, next) => {
 
 // Update user details from user panel
 router.put("/update", async (req, res, next) => {
-    let userId = userDataService.getUserId(req.headers.authorization);
+    let userId = req.user.sub;
     let user = req.body;
     user.id = userId;
     try {
@@ -72,13 +73,22 @@ router.put("/update", async (req, res, next) => {
 // Get user details by token
 router.get("/me", async (req, res, next) => {
     try {
-        if (!req.headers.authorization) {
-            throw new ServerError(ErrorType.NO_AUTHORIZATION_TOKEN);
-        }
-
-        let userId = userDataService.getUserId(req.headers.authorization);
-        let userDetails = await usersLogic.getUserDetails(userId);  
+        let userId = req.user.sub;
+        let userDetails = await usersLogic.getUserDetails(userId);
         res.json(userDetails);
+    }
+    catch (error) {
+        return next(error);
+    }
+})
+
+// Logout user by deleting cookie token
+router.delete("/logout", async (req, res, next) => {
+    try {
+        if (req.cookies.token){
+            res.clearCookie('token');
+        }
+        res.json()
     }
     catch (error) {
         return next(error);

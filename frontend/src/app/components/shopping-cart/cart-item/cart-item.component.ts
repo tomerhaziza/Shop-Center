@@ -17,8 +17,6 @@ export class CartItemComponent implements OnInit {
   @Input()
   item: CartItem
 
-  public apiUrl = environment.apiUrl;
-
   constructor(private cartService: CartService, public stateService: StateService, public matDialog: MatDialog) { }
 
   public removeFromCart() {

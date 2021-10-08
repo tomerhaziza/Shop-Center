@@ -1,7 +1,7 @@
 <div class="product">
     <div class="product-top">
         <div class="image-wrap">
-            <img src='http://{{apiUrl}}/uploads/{{product.imageUrl}}' alt='{{product.name}}' (click)='openDialog()'
+            <img src='/uploads/{{product.imageUrl}}' alt='{{product.name}}' (click)='openDialog()'
                 [className]="stateService.userAuth.isAdmin ? 'cursor-default' : 'cursor-pointer'">
         </div>
         <h3>{{product.name}}</h3>
@@ -9,7 +9,7 @@
     </div>
 
 
-    <div class="product-bottom">
+    <div class="product-bottom" *ngIf='!stateService.userAuth.isGuest'>
 
         <div class="product-amount" *ngIf='!stateService.userAuth.isAdmin'>
             <div class="amount-buttons">

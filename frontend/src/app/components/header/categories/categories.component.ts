@@ -17,8 +17,6 @@ export class CategoriesComponent implements OnInit {
 
   public isMenuOpen: boolean;
 
-  public apiUrl = environment.apiUrl;
-
   constructor(private categoriesService: CategoriesService, public stateService: StateService,
               private router: Router, private _eref: ElementRef) { }
 

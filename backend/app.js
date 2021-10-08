@@ -1,32 +1,29 @@
-const express = require("express");
-const server = express();
-const cors = require('cors');
-const path = require('path')
-const apiController = require('./controllers/api-controller')
-const errorHandler = require("./errors/error-handler");
-const loginFilter = require('./middleware/login-filter');
-const cookieParser = require('cookie-parser')
-require('dotenv').config()
+require('dotenv').config();
+const express = require("express"),
+  app = express(),
+  PORT = process.env.PORT || 3001,
+  path = require('path'),
+  apiController = require('./controllers/api-controller'),
+  errorHandler = require("./errors/error-handler"),
+  loginFilter = require('./middleware/login-filter'),
+  cookieParser = require('cookie-parser');
 
-
-server.use('/uploads', express.static(__dirname  + '/uploads')); // Make uploads folder public
-server.use(express.static('public')); // Make client public
-server.use(cors({ origin: "http://localhost:4200" })); // For dev only
-server.use(express.json());
-server.use(cookieParser())
+app.use('/uploads', express.static(__dirname + '/uploads')); // Make uploads folder public
+app.use(express.static('public')); // Make client public
+app.use(express.json());
+app.use(cookieParser());
 
 // JWT authenticator
-server.use('/api', loginFilter());
+app.use('/api', loginFilter());
 
 // API's
-server.use('/api', apiController);
-
+app.use('/api', apiController);
 
 // For SPA support
-server.all('*', (req, res) => {
+app.all('*', (_req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'));
 })
 
-server.use(errorHandler);
+app.use(errorHandler);
 
-server.listen(process.env.PORT || 3000, () => console.log("Listening on port 3000"));
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

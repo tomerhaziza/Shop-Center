@@ -1,7 +1,6 @@
 const productsDao = require("../dao/products-dao");
 let ServerError = require("../errors/server-error");
 let ErrorType = require("../errors/error-type");
-const jwt = require('jsonwebtoken');
 
 // Add new product
 async function addProduct(product) {

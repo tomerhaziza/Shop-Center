@@ -18,9 +18,6 @@ export class RegisterComponent implements OnInit {
                  }
   
   ngOnInit(): void {
-    if (localStorage.getItem('token')){
-      this.router.navigate(["/"]);
-    }
   }
 
   ngOnDestroy(){

@@ -7,7 +7,7 @@ import { StateService } from 'src/app/services/state.service';
 import { UsersService } from 'src/app/services/users.service';
 import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
-import {Title} from "@angular/platform-browser";
+import { Title } from "@angular/platform-browser";
 
 
 @Component({
@@ -22,12 +22,12 @@ export class LoginComponent implements OnInit {
   public ordersCount: number;
 
   constructor(private usersService: UsersService, private productsService: ProductsService,
-              private ordersService: OrdersService, public stateService: StateService,
-              private router: Router, private authService: SocialAuthService,
-              private titleService:Title) {
-                this.userLoginDetails = new UserLoginDetails('', '');
-                this.titleService.setTitle("Login - Shop Center");
-                }
+    private ordersService: OrdersService, public stateService: StateService,
+    private router: Router, private authService: SocialAuthService,
+    private titleService: Title) {
+    this.userLoginDetails = new UserLoginDetails('', '');
+    this.titleService.setTitle("Login - Shop Center");
+  }
 
   public getProductsInStoreCount() {
     this.productsService.getProductsInStoreCount()
@@ -49,13 +49,13 @@ export class LoginComponent implements OnInit {
 
   public onLogin(formData): void {
     this.usersService.login(this.userLoginDetails)
-      .subscribe(successfulLoginServerResponse => {
-        localStorage.setItem('token', successfulLoginServerResponse.token); // Set token in localStorage
+      .subscribe(userDetails => {
 
         this.stateService.userAuth.isLoggedIn = true; // Set user login status
-        this.stateService.userDetails = successfulLoginServerResponse.userDetails;
+        this.stateService.userAuth.isGuest = false;
+        this.stateService.userDetails = userDetails;
 
-        if (successfulLoginServerResponse.userDetails.role == 'ADMIN') {
+        if (userDetails.role == 'ADMIN') {
           this.stateService.userAuth.isAdmin = true;
         }
 
@@ -83,34 +83,27 @@ export class LoginComponent implements OnInit {
 
 
   async ngOnInit(): Promise<void> {
-    if (localStorage.getItem('token')) {
-      this.router.navigate(["/"]);
-      return;
-    }
     this.getProductsInStoreCount();
     this.getOrdersInStoreCount();
-    
+
     this.authService.authState.subscribe((user) => {
       this.stateService.googleUser = user;
-      
-      if (user){
-        let token = {token: user.idToken};
+
+      if (user) {
+        let token = { token: user.idToken };
         this.usersService.oauthLogin(token)
-      .subscribe(successfulLoginServerResponse => {
-        if (this.stateService.googleUser){
-          localStorage.setItem('token', successfulLoginServerResponse.token); // Set token in localStorage
-  
-          this.stateService.userAuth.isLoggedIn = true; // Set user login status
-          this.stateService.userDetails = successfulLoginServerResponse.userDetails;
-  
-          this.router.navigate(["/"]);
-        }
-      }, error => {
-        console.log(error);
-      });
+          .subscribe(userDetails => {
+            if (this.stateService.googleUser) {
+              this.stateService.userAuth.isLoggedIn = true; // Set user login status
+              this.stateService.userAuth.isGuest = false;
+              this.stateService.userDetails = userDetails;
+              this.router.navigate(["/"]);
+            }
+          }, error => {
+            console.log(error);
+          });
       }
     });
-    
   }
 
 }

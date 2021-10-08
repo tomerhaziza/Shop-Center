@@ -13,27 +13,27 @@ export class CartService {
   constructor( private http : HttpClient ) { }
   
   public getShoppingCart() : Observable<Cart>{
-    return this.http.get<Cart>(`http://${environment.apiUrl}/api/cart/last`);
+    return this.http.get<Cart>(`/api/cart/last`);
   }
 
   public addProductToCart(productData: ProductToCartDetails): Observable<void>{
-    return this.http.post<void>(`http://${environment.apiUrl}/api/cart/add-product`, productData);
+    return this.http.post<void>(`/api/cart/add-product`, productData);
   }
 
   public updateProductAmountInCart(productData): Observable<void>{
-    return this.http.put<void>(`http://${environment.apiUrl}/api/cart/update-amount`, productData);
+    return this.http.put<void>(`/api/cart/update-amount`, productData);
   }
 
   public removeProductFromCart(productId): Observable<void>{    
-    return this.http.delete<void>(`http://${environment.apiUrl}/api/cart/remove-product/` + productId);
+    return this.http.delete<void>(`/api/cart/remove-product/` + productId);
   }
 
   public emptyShoppingCart(): Observable<void>{
-    return this.http.delete<void>(`http://${environment.apiUrl}/api/cart/empty`);
+    return this.http.delete<void>(`/api/cart/empty`);
   }
 
   public getCartById(cartId) : Observable<Cart>{
-    return this.http.get<Cart>(`http://${environment.apiUrl}/api/cart/${cartId}`);
+    return this.http.get<Cart>(`/api/cart/${cartId}`);
   }
 
 }

@@ -16,4 +16,7 @@
             <a (click)='stateService.forceLogout()'>logout</a>
         </div>
     </div>
+    <div class="login-register" *ngIf='stateService.userAuth.isGuest'>
+        <a routerLink='login'>Login</a> / <a routerLink='register'>Register</a>
+    </div>
 </div>

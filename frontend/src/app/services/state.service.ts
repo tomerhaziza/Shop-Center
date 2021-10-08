@@ -7,6 +7,7 @@ import { UserAuthObject } from '../models/UserAuthObject';
 import { UserDetails } from '../models/UserDetails';
 import { UserRegisterDetails } from '../models/UserRegisterDetails';
 import { SocialAuthService } from "angularx-social-login";
+import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -46,8 +47,8 @@ export class StateService {
 
   googleUser;
 
-  constructor(private router: Router, private authService: SocialAuthService) {
-    this.userAuth = new UserAuthObject(false, false);
+  constructor(private router: Router, private authService: SocialAuthService, private usersService : UsersService) {
+    this.userAuth = new UserAuthObject(false, false, true);
     this.shoppingCart = new Cart(undefined, [], undefined);
     this.userRegisterDetails = new UserRegisterDetails(null, '', '', '', '', '', '');
     this.isInAddProduct = false;
@@ -71,15 +72,25 @@ export class StateService {
     this.detectCartUpdateEvent.emit();
   }
 
-  public forceLogout() {
+  public forceLogout(): void {
     if (this.googleUser !== null){
       this.authService.signOut();
       this.googleUser = null;
     }
+    // need to delete cookie by server
+    if (this.userAuth.isLoggedIn){
+      this.usersService.logout()
+      .subscribe(response => {
+        console.log('Signed out successfuly');
+      }, error => {
+        console.log(error);
+      });
+    }
+    
     this.userAuth.isLoggedIn = false;
     this.userAuth.isAdmin = false;
+    this.userAuth.isGuest = true;
     this.userDetails = new UserDetails(null, '', '', '', '', '', '');
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 }

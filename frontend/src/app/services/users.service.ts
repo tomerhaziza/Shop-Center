@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SuccessfulLoginServerResponse } from '../models/SuccessfulLoginServerResponse';
 import { UserDetails } from '../models/UserDetails';
 import { UserLoginDetails } from '../models/UserLoginDetails';
 import { UserRegisterDetails } from '../models/UserRegisterDetails';
@@ -15,30 +14,34 @@ export class UsersService {
 
   constructor(private http : HttpClient) { }
 
-  public login(userLoginDetails: UserLoginDetails): Observable<SuccessfulLoginServerResponse>{
-    return this.http.post<SuccessfulLoginServerResponse>
-                          (`http://${environment.apiUrl}/api/users/login`, userLoginDetails);
+  public login(userLoginDetails: UserLoginDetails): Observable<UserDetails>{
+    return this.http.post<UserDetails>
+                          (`/api/users/login`, userLoginDetails);
   }
 
-  public oauthLogin(token): Observable<SuccessfulLoginServerResponse>{    
-    return this.http.post<SuccessfulLoginServerResponse>
-                          (`http://${environment.apiUrl}/api/users/google-login`, token);
+  public oauthLogin(token): Observable<UserDetails>{    
+    return this.http.post<UserDetails>
+                          (`/api/users/google-login`, token);
   }
 
   public register(userRegisterDetails : UserRegisterDetails): Observable<void>{
-    return this.http.post<void>(`http://${environment.apiUrl}/api/users/register`, userRegisterDetails);
+    return this.http.post<void>(`/api/users/register`, userRegisterDetails);
   }
 
   public getUserInfo(): Promise<UserDetails>{
-    return this.http.get<UserDetails>(`http://${environment.apiUrl}/api/users/me`).toPromise();
+    return this.http.get<UserDetails>(`/api/users/me`).toPromise();
   }
 
   public isUserAlreadyExist(userRegisterDetails : UserRegisterDetails): Observable<boolean>{    
-    return this.http.post<boolean>(`http://${environment.apiUrl}/api/users/user-exists`, userRegisterDetails);
+    return this.http.post<boolean>(`/api/users/user-exists`, userRegisterDetails);
   }
   
   public updateUserDetails(userDetails : UserRegisterDetails): Observable<void>{
-    return this.http.put<void>(`http://${environment.apiUrl}/api/users/update`, userDetails);
+    return this.http.put<void>(`/api/users/update`, userDetails);
+  }
+
+  public logout(): Observable<void>{
+    return this.http.delete<void>(`/api/users/logout`, {withCredentials:true});
   }
 
 }

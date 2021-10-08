@@ -37,11 +37,10 @@ export class PersonalDetailsComponent implements OnInit {
     let userLoginDetails = new UserLoginDetails(this.userRegisterDetails.email, this.userRegisterDetails.password);
 
     this.usersService.login(userLoginDetails)
-    .subscribe(successfulLoginServerResponse => {
-      localStorage.setItem('token', successfulLoginServerResponse.token); // Set token in localStorage
-
+    .subscribe(userDetails => {
       this.stateService.userAuth.isLoggedIn = true; // Set user login status
-      this.stateService.userDetails = successfulLoginServerResponse.userDetails
+      this.stateService.userAuth.isGuest = false;
+      this.stateService.userDetails = userDetails
       this.router.navigate(["/"]);   
     }, error => {
       console.log(error);

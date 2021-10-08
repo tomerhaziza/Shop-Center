@@ -15,35 +15,35 @@ export class ProductsService {
   constructor(private http : HttpClient) { }
 
   public getProductsInStoreCount() : Observable<number>{
-    return this.http.get<number>(`http://${environment.apiUrl}/api/products/count`);
+    return this.http.get<number>(`/api/products/count`);
   }
 
   public addProduct(newProductDetails : NewProductDetails): Observable<any>{
-    return this.http.post(`http://${environment.apiUrl}/api/products`, newProductDetails);
+    return this.http.post(`/api/products`, newProductDetails);
   }
 
   public changeProduct(productToCartDetails : ProductToEditDetails) : Observable<void>{
-    return this.http.put<void>(`http://${environment.apiUrl}/api/products`, productToCartDetails);
+    return this.http.put<void>(`/api/products`, productToCartDetails);
   }
 
   public getProductsByCategory(categoryId:number) : Observable<Product[]>{
-    return this.http.get<Product[]>(`http://${environment.apiUrl}/api/products/` + categoryId);
+    return this.http.get<Product[]>(`/api/products/` + categoryId);
     }
 
   public searchProduct(searchQuery:string) : Observable<Product[]>{
-    return this.http.get<Product[]>(`http://${environment.apiUrl}/api/products/search/?q=` + searchQuery);
+    return this.http.get<Product[]>(`/api/products/search/?q=` + searchQuery);
   }
 
   public upload(uploadData: FormData) : Observable<any>{
-    return this.http.post(`http://${environment.apiUrl}/api/upload`, uploadData);
+    return this.http.post(`/api/upload`, uploadData);
   }
 
   public getBestSellers() : Observable<Product[]>{
-    return this.http.get<Product[]>(`http://${environment.apiUrl}/api/products/popular`);
+    return this.http.get<Product[]>(`/api/products/popular`);
   }
 
   public deletePhoto(imageName:string) : Observable<void>{
-    return this.http.delete<void>(`http://${environment.apiUrl}/api/upload/delete/` + imageName);
+    return this.http.delete<void>(`/api/upload/delete/` + imageName);
   }
 
 }

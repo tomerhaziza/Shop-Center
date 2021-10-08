@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class HeaderComponent implements OnInit {
 
-  public apiUrl = environment.apiUrl;
 
   constructor(public stateService: StateService) { }
 

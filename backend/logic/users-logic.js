@@ -20,13 +20,11 @@ async function login(user) {
     }
 
     const payload = {
-        sub: process.env.JWT_SALT_LEFT + userLoginData.id + process.env.JWT_SALT_RIGHT,
-        userId: userLoginData.id,
-        role: userLoginData.role
+        sub: userLoginData.id
     }
 
     const token = jwt.sign(payload, process.env.JWT_SECRET);
-    const successfullLoginResponse = { token: token, userDetails: userLoginData };
+    const successfullLoginResponse = { token: "Bearer " + token, userDetails: userLoginData };
     return successfullLoginResponse;
 }
 
@@ -60,9 +58,7 @@ async function loginRegisteredGoogleUser(email){
     let userDetails = await usersDao.getUserDetailsByEmail(email)
     
     const payload = {
-        sub: process.env.JWT_SALT_LEFT + userDetails.id + process.env.JWT_SALT_RIGHT,
-        userId: userDetails.id,
-        role: userDetails.role
+        sub: userLoginData.id
     }
 
     const token = jwt.sign(payload, process.env.JWT_SECRET);

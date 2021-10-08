@@ -17,7 +17,6 @@ export class ProductDialogComponent implements OnInit {
   public amount: number = 1;
   public error: boolean;
   public totalPrice: number;
-  public apiUrl = environment.apiUrl;
 
   constructor(@Inject(MAT_DIALOG_DATA) public product:Product, private cartService: CartService,
                public stateService: StateService,  public matDialog: MatDialog) { 

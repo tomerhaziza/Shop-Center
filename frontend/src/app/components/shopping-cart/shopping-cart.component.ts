@@ -14,8 +14,6 @@ export class ShoppingCartComponent implements OnInit {
 
   @ViewChild('container') private cartItemsContainer: ElementRef;
 
-  public apiUrl = environment.apiUrl;
-
   constructor(private cartService: CartService, public stateService: StateService, private router: Router) { }
 
   public getShoppingCart() {

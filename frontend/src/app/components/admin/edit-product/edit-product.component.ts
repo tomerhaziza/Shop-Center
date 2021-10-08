@@ -13,7 +13,6 @@ export class EditProductComponent implements OnInit {
 
   public tempImage: string | ArrayBuffer;
   public imageData: FormData;
-  public apiUrl = environment.apiUrl;
   
   constructor(private productsService: ProductsService, public stateService: StateService) { }
 

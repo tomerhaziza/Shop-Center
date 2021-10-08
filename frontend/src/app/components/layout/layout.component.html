@@ -3,7 +3,7 @@
         <app-header></app-header>
     </header>
 
-    <div [className]="stateService.userAuth.isLoggedIn ? 'flexbox user' : 'flexbox guest'">
+    <div class="flexbox user">
         <main>
             <div>
                 <router-outlet></router-outlet>

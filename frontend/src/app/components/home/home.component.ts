@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
   public lastOrder: Order;
   public firstPurchase: boolean;
   public lastOrderDate: Date;
-  public apiUrl = environment.apiUrl;
 
   constructor( private productsService: ProductsService, private ordersService: OrdersService,
                public stateService: StateService, private router : Router,

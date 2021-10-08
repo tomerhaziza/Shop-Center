@@ -1,15 +1,6 @@
-const jwt = require('jsonwebtoken');
-const CLIENT_ID = '70009867136-ru98v2leo4lgapf427k1pjm9nfjqe87b.apps.googleusercontent.com';
+const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const {OAuth2Client} = require('google-auth-library');
 const client = new OAuth2Client(CLIENT_ID);
-require('dotenv').config();
-
-// Decode JWT token to get user ID
-function getUserId(authHeader) {
-    const token = authHeader.split(' ')[1];
-    const decodedJwt = jwt.verify(token, process.env.JWT_SECRET);
-    return decodedJwt.userId;
-}
 
 // For google oAuth
 async function verify(token) {
@@ -24,6 +15,5 @@ async function verify(token) {
 }
 
 module.exports = {
-    getUserId,
     verify
 }

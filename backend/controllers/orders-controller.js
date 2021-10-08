@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const userDataService = require('../services/user-data-service');
 const ordersLogic = require('../logic/orders-logic');
 
 // Add new order
 router.post("/", async (req, res, next) => {
-    let userId = userDataService.getUserId(req.headers.authorization);
+    let userId = req.user.sub;
     let orderData = req.body;
 
     try {
@@ -32,7 +31,7 @@ router.get("/count", async (req, res, next) => {
 
 // Get last order for user
 router.get("/", async (req, res, next) => {
-    let userId = userDataService.getUserId(req.headers.authorization);
+    let userId = req.user.sub;
     try {
         let lastOrder = await ordersLogic.getLastOrder(userId);
         res.json(lastOrder);
@@ -57,7 +56,7 @@ router.get("/busy", async (req, res, next) => {
 
 // Get last order for user
 router.get("/all", async (req, res, next) => {
-    let userId = userDataService.getUserId(req.headers.authorization);
+    let userId = req.user.sub;
     let page = req.query.page;
 
     try {

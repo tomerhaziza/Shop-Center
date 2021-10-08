@@ -40,7 +40,6 @@ export class ProductComponent implements OnInit {
   product: Product
 
   public error: boolean;
-  public apiUrl = environment.apiUrl;
   public amount: number;
 
   constructor(private cartService: CartService, public stateService: StateService, public matDialog: MatDialog) {
@@ -137,7 +136,7 @@ export class ProductComponent implements OnInit {
   }
 
   public openDialog() {
-    if (!this.stateService.userAuth.isAdmin) {
+    if (!this.stateService.userAuth.isAdmin ||!this.stateService.userAuth.isGuest ) {
       this.matDialog.open(ProductDialogComponent,
         {
           panelClass: 'app-dialog',

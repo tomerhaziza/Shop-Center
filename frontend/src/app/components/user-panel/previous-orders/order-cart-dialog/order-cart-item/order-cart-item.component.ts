@@ -12,12 +12,9 @@ export class OrderCartItemComponent implements OnInit {
   @Input()
   item: CartItem
 
-  public apiUrl = environment.apiUrl;
-
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.item);
   }
 
 }
