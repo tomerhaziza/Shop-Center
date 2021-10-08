@@ -2,7 +2,7 @@
     <div class="product-top">
         <div class="image-wrap">
             <img src='/uploads/{{product.imageUrl}}' alt='{{product.name}}' (click)='openDialog()'
-                [className]="stateService.userAuth.isAdmin ? 'cursor-default' : 'cursor-pointer'">
+                [className]="stateService.userAuth.isAdmin || stateService.userAuth.isGuest ? 'cursor-default' : 'cursor-pointer'">
         </div>
         <h3>{{product.name}}</h3>
         <p> ₪ {{product.price}} </p>
@@ -18,12 +18,15 @@
                     [(ngModel)]='amount' min="1">
                 <button (click)='onIncreaseAmount()'>+</button>
             </div>
-            
-            <button [className]='buttonText != "Add to cart" && buttonText != "Adding..." ? "add-button added" : "add-button"' (click)="onAddToCart()">
+
+            <button
+                [className]='buttonText != "Add to cart" && buttonText != "Adding..." ? "add-button added" : "add-button"'
+                (click)="onAddToCart()">
                 <div class="add-button-txt" [@buttonTextStateTrigger]="buttonTextState"
                     (@buttonTextStateTrigger.done)="buttonTextTransitioned($event)">
                     <i class="fas fa-shopping-cart button-icon" *ngIf='buttonText == "Add to cart"'></i>
-                    <i class="fas fa-check button-icon" *ngIf='buttonText != "Add to cart" && buttonText != "Adding..."'></i>
+                    <i class="fas fa-check button-icon"
+                        *ngIf='buttonText != "Add to cart" && buttonText != "Adding..."'></i>
                     {{ buttonText }}
                 </div>
             </button>

@@ -6,15 +6,13 @@ import { ProductToEditDetails } from '../models/ProductToEditDetails';
 import { UserAuthObject } from '../models/UserAuthObject';
 import { UserDetails } from '../models/UserDetails';
 import { UserRegisterDetails } from '../models/UserRegisterDetails';
-import { SocialAuthService } from "angularx-social-login";
+import { SocialAuthService } from 'angularx-social-login';
 import { UsersService } from './users.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class StateService {
-
   @Output() detectProductsUpdateEvent = new EventEmitter<string>();
 
   @Output() detectCartUpdateEvent = new EventEmitter<string>();
@@ -47,10 +45,22 @@ export class StateService {
 
   googleUser;
 
-  constructor(private router: Router, private authService: SocialAuthService, private usersService : UsersService) {
+  constructor(
+    private router: Router,
+    private authService: SocialAuthService,
+    private usersService: UsersService
+  ) {
     this.userAuth = new UserAuthObject(false, false, true);
     this.shoppingCart = new Cart(undefined, [], undefined);
-    this.userRegisterDetails = new UserRegisterDetails(null, '', '', '', '', '', '');
+    this.userRegisterDetails = new UserRegisterDetails(
+      null,
+      '',
+      '',
+      '',
+      '',
+      '',
+      ''
+    );
     this.isInAddProduct = false;
     this.isInChangeProduct = false;
     this.productToEdit = new ProductToEditDetails(null, '', null, '', 3);
@@ -73,20 +83,22 @@ export class StateService {
   }
 
   public forceLogout(): void {
-    if (this.googleUser !== null){
+    if (this.googleUser !== null) {
       this.authService.signOut();
       this.googleUser = null;
     }
     // need to delete cookie by server
-    if (this.userAuth.isLoggedIn){
-      this.usersService.logout()
-      .subscribe(response => {
-        console.log('Signed out successfuly');
-      }, error => {
-        console.log(error);
-      });
+    if (this.userAuth.isLoggedIn) {
+      this.usersService.logout().subscribe(
+        (response) => {
+          console.log('Signed out successfuly');
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     }
-    
+
     this.userAuth.isLoggedIn = false;
     this.userAuth.isAdmin = false;
     this.userAuth.isGuest = true;

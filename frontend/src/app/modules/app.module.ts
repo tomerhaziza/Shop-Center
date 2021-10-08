@@ -10,8 +10,7 @@ import { LoginComponent } from '../components/login/login.component';
 import { ShoppingCartComponent } from '../components/shopping-cart/shopping-cart.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
-import { AuthenticationInterceptor } from '../interceptors/AuthenticationInterceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from '../components/register/register.component';
 import { AddProductComponent } from '../components/admin/add-product/add-product.component';
 import { NavbarComponent } from '../components/header/navbar/navbar.component';
@@ -31,7 +30,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from '../components/page-not-found/page-not-found.component';
 import { CheckoutCompleteDialogComponent } from '../components/checkout/checkout-complete-dialog/checkout-complete-dialog.component';
 
-
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -42,10 +40,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 
 import { CustomErrorHttpInterceptor } from '../interceptors/ErrorInterceptor';
-import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from 'angularx-social-login';
 import {
   GoogleLoginProvider,
-  FacebookLoginProvider
+  FacebookLoginProvider,
 } from 'angularx-social-login';
 import { OauthRegisterComponent } from '../components/register/oauth-register/oauth-register.component';
 import { CoolSocialLoginButtonsModule } from '@angular-cool/social-login-buttons';
@@ -57,14 +58,16 @@ import { UserPanelComponent } from '../components/user-panel/user-panel.componen
 import { OrderCartDialogComponent } from '../components/user-panel/previous-orders/order-cart-dialog/order-cart-dialog.component';
 import { OrderCartItemComponent } from '../components/user-panel/previous-orders/order-cart-dialog/order-cart-item/order-cart-item.component';
 
-
-
-const matImports =
-  [MatDialogModule, MatDatepickerModule,
-    MatNativeDateModule, MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule, MatSelectModule]
+const matImports = [
+  MatDialogModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatIconModule,
+  MatButtonModule,
+  MatSelectModule,
+];
 
 @NgModule({
   declarations: [
@@ -102,29 +105,37 @@ const matImports =
   ],
   imports: [
     BrowserModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    RouterModule, RoutingModule, BrowserAnimationsModule,
-    matImports, SocialLoginModule,
-    CoolSocialLoginButtonsModule
+    RouterModule,
+    RoutingModule,
+    BrowserAnimationsModule,
+    matImports,
+    SocialLoginModule,
+    CoolSocialLoginButtonsModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
-  { provide: HTTP_INTERCEPTORS, useClass: CustomErrorHttpInterceptor, multi: true },
-  {
-    provide: 'SocialAuthServiceConfig',
-    useValue: {
-      autoLogin: true,
-      providers: [
-        {
-          id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider(
-            '70009867136-ru98v2leo4lgapf427k1pjm9nfjqe87b.apps.googleusercontent.com'
-          )
-        }
-      ]
-    } as SocialAuthServiceConfig,
-  }
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CustomErrorHttpInterceptor,
+      multi: true,
+    },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: true,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '70009867136-ru98v2leo4lgapf427k1pjm9nfjqe87b.apps.googleusercontent.com'
+            ),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
   ],
-  bootstrap: [LayoutComponent]
+  bootstrap: [LayoutComponent],
 })
-export class AppModule { }
+export class AppModule {}
