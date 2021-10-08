@@ -50,7 +50,7 @@ export class StateService {
     private authService: SocialAuthService,
     private usersService: UsersService
   ) {
-    this.userAuth = new UserAuthObject(false, false, true);
+    this.userAuth = new UserAuthObject(false, false, false);
     this.shoppingCart = new Cart(undefined, [], undefined);
     this.userRegisterDetails = new UserRegisterDetails(
       null,

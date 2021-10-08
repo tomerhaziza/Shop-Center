@@ -21,7 +21,7 @@ async function completeCheckout(userId, orderData) {
 
 // Get how many orders in store
 async function getOrdersInStoreCount() {
-    let sql = "SELECT COUNT(*) as ordersCount FROM orders";
+    const sql = "SELECT COUNT(*) as ordersCount FROM orders";
     try {
         return await connection.execute(sql);
     }
@@ -33,7 +33,7 @@ async function getOrdersInStoreCount() {
 
 // Get last order for user
 async function getLastOrder(userId) {
-    let sql = `SELECT
+    const sql = `SELECT
                 id, cart_id as cartId, total_price as totalPrice, city, street,
                 delivery_date as deliveryDate, order_date as orderDate,
                 credit_card as creditCardNumber, cart_items_qty as cartItemsQty
@@ -53,7 +53,7 @@ async function getLastOrder(userId) {
 
 // Get the dates where there are more than 3 orders
 async function getBusyDays() {
-    let sql = ` SELECT delivery_date AS deliveryDate FROM orders 
+    const sql = ` SELECT delivery_date AS deliveryDate FROM orders 
                 WHERE delivery_date >= ? GROUP BY deliveryDate HAVING COUNT(*)>=3 ORDER BY deliveryDate`;
                 const parameters = [new Date()];
     try {
@@ -67,7 +67,7 @@ async function getBusyDays() {
 
 // Get all orders for user
 async function getAllUserOrders(userId, page) {
-    let sql = ` SELECT
+    const sql = ` SELECT
                 id, cart_id as cartId, total_price as totalPrice, city, street,
                 delivery_date as deliveryDate, order_date as orderDate,
                 credit_card as creditCardNumber, cart_items_qty as cartItemsQty

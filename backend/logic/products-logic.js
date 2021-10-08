@@ -1,6 +1,6 @@
 const productsDao = require("../dao/products-dao");
-let ServerError = require("../errors/server-error");
-let ErrorType = require("../errors/error-type");
+const ServerError = require("../errors/server-error");
+const ErrorType = require("../errors/error-type");
 
 // Add new product
 async function addProduct(product) {
@@ -24,7 +24,7 @@ async function searchProductsByName(query){
 
 // Get how many products in store
 async function getProductsInStoreCount(){
-    let count = await productsDao.getProductsInStoreCount();
+    const count = await productsDao.getProductsInStoreCount();
     return count[0].productsCount;
 }
 

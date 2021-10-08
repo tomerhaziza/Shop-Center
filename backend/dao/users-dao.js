@@ -21,9 +21,8 @@ async function login(user) {
                  FROM users where email =? and password =?`;
     const parameters = [user.email, user.password];
 
-    let userLoginData;
     try {
-        userLoginData = await connection.executeWithParameters(sql, parameters);
+        const userLoginData = await connection.executeWithParameters(sql, parameters);
         return userLoginData[0];
     }
     catch (e) {
@@ -36,10 +35,10 @@ async function login(user) {
 // Check if email already exist
 async function isUserExistByEmail(email) {
     try {
-        let sql = "SELECT email FROM users WHERE email=?";
-        let parameters = [email];
+        const sql = "SELECT email FROM users WHERE email=?";
+        const parameters = [email];
 
-        let result = await connection.executeWithParameters(sql, parameters);
+        const result = await connection.executeWithParameters(sql, parameters);
 
         if (result[0]) {
             return true;
@@ -57,10 +56,8 @@ async function getUserDetails(userId) {
     const sql = `SELECT id, email, first_name AS firstName, last_name AS lastName, city, street, role
                  FROM users WHERE id = ?`;
     const parameters = [userId];
-
-    let userDetails;
     try {
-        userDetails = await connection.executeWithParameters(sql, parameters);
+        const userDetails = await connection.executeWithParameters(sql, parameters);
         return userDetails[0];
     }
     catch (e) {
@@ -74,9 +71,8 @@ async function getUserDetailsByEmail(email) {
                  FROM users WHERE email = ?`;
     const parameters = [email];
 
-    let userDetails;
     try {
-        userDetails = await connection.executeWithParameters(sql, parameters);
+        const userDetails = await connection.executeWithParameters(sql, parameters);
         return userDetails[0];
     }
     catch (e) {

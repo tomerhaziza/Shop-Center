@@ -1,4 +1,4 @@
-let connection = require("./connection-wrapper");
+const connection = require("./connection-wrapper");
 const ServerError = require('../errors/server-error');
 const ErrorType = require('../errors/error-type');
 
@@ -16,11 +16,11 @@ async function createNewCart(userId) {
 
 // Get last cart id
 async function getLastCartId(userId) {
-    let sql = "SELECT * FROM cart WHERE user_id=? order by id DESC limit 1";
+    const sql = "SELECT * FROM cart WHERE user_id=? order by id DESC limit 1";
     const parameters = [ userId ];
 
     try {
-        let response =  await connection.executeWithParameters(sql, parameters);
+        const response =  await connection.executeWithParameters(sql, parameters);
         if (response[0]){ // If user has cart
             return response[0].id;
         }
@@ -33,7 +33,7 @@ async function getLastCartId(userId) {
 
 // Get last cart items
 async function getCartItemsById(userId, cartId) {
-    let sql =  `SELECT product_id as id, name, price, amount, total_price as totalPrice, image_url as imageUrl
+    const sql =  `SELECT product_id as id, name, price, amount, total_price as totalPrice, image_url as imageUrl
                 FROM ((cart_items
                 INNER JOIN cart ON cart_items.cart_id = cart.id)
                 INNER JOIN products ON cart_items.product_id = products.id)
@@ -62,11 +62,11 @@ async function emptyShoppingCart(cartId) {
 
 // Check if product already in cart to add to amount
 async function isProductInCart(productData) {
-    let sql =  "SELECT amount FROM cart_items where cart_id = ? AND product_id = ?"
+    const sql =  "SELECT amount FROM cart_items where cart_id = ? AND product_id = ?"
     const parameters = [ productData.cartId, productData.productId ];
 
     try {
-        let res = await connection.executeWithParameters(sql, parameters);
+        const res = await connection.executeWithParameters(sql, parameters);
         if (res[0]){
             return res[0].amount;
         }

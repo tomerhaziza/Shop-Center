@@ -6,7 +6,7 @@ const ErrorType = require('../errors/error-type');
 // Add new order
 async function completeCheckout(userId, orderData) {
     try{
-        let completedCheckout = await ordersDao.completeCheckout(userId, orderData);
+        const completedCheckout = await ordersDao.completeCheckout(userId, orderData);
         await cartDao.createNewCart(userId);
         return completedCheckout;
     } catch(e){
@@ -17,13 +17,13 @@ async function completeCheckout(userId, orderData) {
 
 // Get how many orders in store
 async function getOrdersInStoreCount(){
-    let count = await ordersDao.getOrdersInStoreCount();
+    const count = await ordersDao.getOrdersInStoreCount();
     return count[0].ordersCount;
 }
 
 // Get last order for user
 async function getLastOrder(userId){
-    let lastOrder = await ordersDao.getLastOrder(userId);
+    const lastOrder = await ordersDao.getLastOrder(userId);
     return lastOrder[0];
 }
 

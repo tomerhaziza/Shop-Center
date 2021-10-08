@@ -1,4 +1,4 @@
-let connection = require("./connection-wrapper");
+const connection = require("./connection-wrapper");
 const ServerError = require('../errors/server-error');
 const ErrorType = require('../errors/error-type');
 
@@ -30,7 +30,7 @@ async function editProduct(product) {
 
 // Get products by category
 async function getAllProductsByCategory(categoryId) {
-    let sql = ` SELECT id, name, price, image_url AS imageUrl, category_id AS categoryId 
+    const sql = ` SELECT id, name, price, image_url AS imageUrl, category_id AS categoryId 
                 FROM products WHERE category_id = ? `;
     const parameters = [ categoryId ];
 
@@ -45,7 +45,7 @@ async function getAllProductsByCategory(categoryId) {
 
 // Search product by name
 async function searchProductsByName(categoryId) {
-    let sql = ` SELECT id, name, price, image_url as imageUrl, category_id AS categoryId
+    const sql = ` SELECT id, name, price, image_url as imageUrl, category_id AS categoryId
                 FROM products WHERE name like '%' ? '%' LIMIT 40`;
     const parameters = [ categoryId ];
 
@@ -60,7 +60,7 @@ async function searchProductsByName(categoryId) {
 
 // Get the most popular products
 async function getBestSellerProducts() {
-    let sql =  `SELECT products.id, products.name, price, image_url AS imageUrl, category_id AS categoryId
+    const sql =  `SELECT products.id, products.name, price, image_url AS imageUrl, category_id AS categoryId
                 FROM shopping_online.cart_items
                 INNER JOIN products
                 ON cart_items.product_id = products.id
@@ -76,7 +76,7 @@ async function getBestSellerProducts() {
 }
 
 async function getProductsInStoreCount() {
-    let sql = "SELECT COUNT(*) as productsCount FROM products";
+    const sql = "SELECT COUNT(*) as productsCount FROM products";
 
     try {
         return await connection.execute(sql);

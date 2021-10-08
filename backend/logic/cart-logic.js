@@ -6,7 +6,7 @@ async function createNewCart(userId) {
 }
 
 async function getCartItemsById(userId, cartId) {
-    let cartItems = await cartDao.getCartItemsById(userId, cartId);
+    const cartItems = await cartDao.getCartItemsById(userId, cartId);
 
     // Calc total price
     let totalPrice = 0;
@@ -24,7 +24,7 @@ async function getCartItemsById(userId, cartId) {
 
 // Get user's last cart items
 async function getLastCartItems(userId) {
-    let lastCartId = await cartDao.getLastCartId(userId); // check if user has an opened cart
+    const lastCartId = await cartDao.getLastCartId(userId); // check if user has an opened cart
 
     if (lastCartId) { // if user has an opened cart
         return getCartItemsById(userId, lastCartId);
@@ -37,13 +37,13 @@ async function getLastCartItems(userId) {
 
 // Empty shopping cart
 async function emptyShoppingCart(userId) {
-    let cartId = await cartDao.getLastCartId(userId);
+    const cartId = await cartDao.getLastCartId(userId);
     return await cartDao.emptyShoppingCart(cartId);
 }
 
 // Check if product already in cart
 async function isProductInCart(productData) {
-    let productAmount = await cartDao.isProductInCart(productData);
+    const productAmount = await cartDao.isProductInCart(productData);
     if (productAmount > 0) {
         return productAmount;
     }
@@ -55,7 +55,7 @@ async function isProductInCart(productData) {
 // Add product to cart
 async function addProductToCart(productData) {
     // Check if product already in cart & get product amount
-    let productAmount = await this.isProductInCart(productData);
+    const productAmount = await this.isProductInCart(productData);
 
     if (productAmount) { // If product already in cart, add to existing product amount
         productData.amount += productAmount;
