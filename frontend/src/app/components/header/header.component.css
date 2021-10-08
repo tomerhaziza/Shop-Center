@@ -1,10 +1,11 @@
 .header{
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
+    background: url('/assets/header-top-tile.png');
+    background-size: 5%;
     box-shadow: 0 3px 7px rgb(41 41 41 / 8%);
 }
 
 .top{
-    background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: space-between;
     align-items: center;

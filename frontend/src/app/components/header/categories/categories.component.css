@@ -1,5 +1,7 @@
 .categories-mobile{
     display: none;
+    background: url('/assets/header-tile.jpg');
+    background-size: 10%;
     box-shadow: 0 3px 7px rgb(41 41 41 / 8%);
 }
 
@@ -11,6 +13,8 @@
 
 .categories-normal{
     background-color: rgb(16, 37, 46);
+    background: url('/assets/header-tile.jpg');
+    background-size: 10%;
 }
 
 .closed{
