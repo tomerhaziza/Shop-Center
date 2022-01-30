@@ -10,7 +10,7 @@ const authenticateJwtRequestToken = () => {
       secret,
       algorithms: ["HS256"],
       getToken: function getTokenFromCookie(req) {
-        return req.cookies.token.split(" ")[1];
+        return req.cookies.token;
       },
     }).unless({
       path: [
